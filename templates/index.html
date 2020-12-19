@@ -3,9 +3,8 @@
 <html lang="en">
     <head>
         <title>Hello</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'login/styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     </head>
     <body>
         <!-- Prop to student or teacher-->
@@ -14,15 +13,17 @@
                 class='d-flex justify-content-center align-items-center flex-column login-select-button' 
                 type="button" 
                 data-toggle="modal" data-target="#id01"
-                >
+            >
                 <img src="{% static 'images/student.jpeg'%}" alt="Avatar">
                 <b>STUDENT</b>
             </button>
-            <button class='d-flex justify-content-center align-items-center flex-column login-select-button' 
-            type="button" 
-            data-toggle="modal" data-target="#id01">
-                <img src="{% static 'images/teachers.png'%}" alt="Avatar">
-                <b>TEACHER</b>
+            <button 
+                class='d-flex justify-content-center align-items-center flex-column login-select-button' 
+                type="button" 
+                data-toggle="modal" data-target="#id01"
+            >
+                <img src="{% static 'images/lecturer.png'%}" alt="Avatar">
+                <b>LECTURER</b>
             </button>
         </div>
 
@@ -31,26 +32,26 @@
         <div class="modal fade" id="id01" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">  
                 <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="Enter Username">
                         </div>
-                        <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" class="form-control" name="username" placeholder="Enter Username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
-                                </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" placeholder="Password">
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
