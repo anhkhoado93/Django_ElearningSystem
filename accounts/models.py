@@ -11,5 +11,5 @@ class User(AbstractUser):
         (4, 'Student'),
         (5, 'Admin'),
     )
-    user_id = models.DecimalField(max_digits=7,decimal_places=0,unique=True,default=Decimal(0000000))
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+    user_id = models.DecimalField(max_digits=7, decimal_places=0, unique=True, default=Decimal(0000000))
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=5)
