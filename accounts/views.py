@@ -12,7 +12,6 @@ def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username, password)
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
@@ -22,4 +21,4 @@ def login_user(request):
             messages.error(request, "Username Or Password is incorrect!!",
                            extra_tags='alert alert-warning alert-dismissible fade show')
 
-    return render(request, "login/login.html")
+    return render(request, "accounts/login.html")

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div style="position:absolute; width: 100%; height: 100%;" class='d-flex justify-content-center align-items-center ' >
+
+    <a class="d-flex justify-content-between align-items-center flex-column" href="#" style="padding-right: 50px; background-color: red;">
+        <img src="{% static 'images/course.png' %}" alt="Avatar">
+        <b>COURSE</b>
+    </a>
+    <a class=" d-flex justify-content-between align-items-center flex-column" href="#" style="padding-left: 50px; background-color: red;">
+        <img src="{% static 'images/register.png' %}" alt="Avatar">
+        <b>REGISTER</b>
+    </a>
+</div>
+{% endblock body %}

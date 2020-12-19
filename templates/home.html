@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block custom_css%} 
+
+<link rel="stylesheet" type="text/css" href="{% static 'bkel/styles.css' %}">
+
+{%endblock custom_css%}
+{% block body %}
+        <!-- Prop to student or teacher-->
+        <div class='d-flex justify-content-center align-items-center p-2' id='login-canvas'>
+            <a class='d-flex justify-content-center align-items-center flex-column login-select-button' href="{% url 'student:home' %}" style="color: black">
+                <img src="{% static 'images/student.jpeg' %}" alt="Avatar">
+                <b>STUDENT</b>
+            </a>
+            <a class='d-flex justify-content-center align-items-center flex-column login-select-button' 
+            type="button" 
+            data-toggle="modal" data-target="#id01">
+                <img src="{% static 'images/teachers.png' %}" alt="Avatar">
+                <b>TEACHER</b>
+            </a>
+
+        </div>
+{% endblock body %}
