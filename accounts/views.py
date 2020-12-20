@@ -19,7 +19,7 @@ def login_user(request):
             return redirect(redirect_url)
         else:
             messages.error(request, "Username Or Password is incorrect!!",
-                           extra_tags='alert alert-warning alert-dismissible fade show')
+                extra_tags='alert alert-warning alert-dismissible fade show')
 
     return render(request, "accounts/login.html")
 
