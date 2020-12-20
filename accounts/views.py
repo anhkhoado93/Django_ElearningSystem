@@ -22,3 +22,8 @@ def login_user(request):
                            extra_tags='alert alert-warning alert-dismissible fade show')
 
     return render(request, "accounts/login.html")
+
+def logout_user(request):
+    logout(request)
+    return redirect('home')
+
