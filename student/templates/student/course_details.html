@@ -2,12 +2,32 @@
 {% load static %}
 
 {% block content-body %}
-<h1>Course Information: {{info[courseName]}}</h1>
-<text>Course ID: {{info.courseId}}</text>
+<text><b>Course ID:</b> {{info.CourseId}}</text>
 <hr class="mt-2 mb-3"/>
-<text>Class ID: {{info.classId}}</text>
+<text><b>Class ID:</b> {{info.ClassId}}</text>
 <hr class="mt-2 mb-3"/>
-<text>Lecturer Name: {{info.lecturerName}}</text>
+<text><b>
+    Lecturer(s) Name:
+    {%with first=True%}
+    {%for l in Lecturers%}
+        {%if first%}
+            {{l}}
+            {%first=False%}
+        {%else%}
+            , {{l}}
+        {%endif%}
+    {%endfor%}
+</b></text>
 <hr class="mt-2 mb-3"/>
-<text>Textbook Names: {{info.textbookName}}</text>
+<text><b>Textbook Names:</b> 
+    {%with first=True%}
+    {%for l in Textbooks%}
+        {%if first%}
+            {{l}}
+            {%first=False%}
+        {%else%}
+            , {{l}}
+        {%endif%}
+    {%endfor%}
+</text>
 {% endblock content-body %}
