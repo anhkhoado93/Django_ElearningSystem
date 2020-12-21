@@ -10,7 +10,6 @@
     height: 30%;
     padding: 5px;
     border-color: rgb(150, 148, 148);
-    border: 2px;
     transition: transform .2s;
 }
 .floating-button:hover {

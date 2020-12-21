@@ -8,30 +8,33 @@ def homepage(request):
     return render(request, "student/home.html")
 
 def coursepage(request):
-    studentId = None
-    semester = None
+    studentId = 1852471
+    semester = 191 
     result_list = None
     with connection.cursor() as cursor:
-        cursor.callproc('studentGetClassesAndLecturers', [studentId, semester])
+        cursor.execute(' \
+        SELECT E.CourseId, C.CourseName\
+        FROM ENROLLS AS E JOIN COURSE AS C ON E.CourseId = C.CourseId AND E.StudentId = {} AND E.Semester = {}\
+        '.format(studentId, semester))
         result = cursor.fetchall()
         result_list = [{'courseId': i[0], 'courseName': i[1]} for i in result]
-    return render(request, "student/course.html", { 'courseList': result_list })
+    return render(request, "student/courses.html", { 'courseList': result_list })
 
 def aboutpage(request):
     return render(request, "student/about.html")
 
 def register(request):
-     if request.method == 'POST':
-        courseId = int(request.POST.get('courseId'))
-        with connection.cursor() as cursor:
-            cursor.callproc('studentEnrollCourse', [studentId, semester, courseId])
-            result = cursor.fetchall()
-            result_list = [{'courseId': i[0], 'courseName': i[1]} for i in result]
-    return render(request, "student/register.html")
+        if request.method == 'POST':
+            courseId = int(request.POST.get('courseId'))
+            with connection.cursor() as cursor:
+                cursor.callproc('studentEnrollCourse', [studentId, semester, courseId])
+                result = cursor.fetchall()
+            
+        return render(request, "student/register.html")
 
 def course_details(request, courseId):
-    studentId = None
-    semester = None
+    studentId = 1852471
+    semester = 201
     result_list = None
 
     with connection.cursor() as cursor:
