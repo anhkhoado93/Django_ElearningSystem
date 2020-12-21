@@ -1,0 +1,10 @@
+{% extends 'student/studentbase.html' %}
+{% load static %}
+
+{% block content-body %}
+<b>{{info[courseName]}}</b>
+<text>Course ID: {{info[courseId]}}</text>
+<text>Class ID: {{info[classId]}}</text>
+<text>Lecturer Name: {{info[lecturerName]}}</text>
+<text>Textbook Names: {{info[textbookName]}}</text>
+{% endblock content-body %}

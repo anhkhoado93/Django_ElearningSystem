@@ -6,5 +6,6 @@ urlpatterns = [
     path("home", views.homepage, name="home"),
     path("courses", views.coursepage, name="courses"),
     path("about", views.aboutpage, name="about"),
-    # path("courses/<courseid>", views.course_details, name="courses_details")
+    path("register", views.register, name="register"),
+    path("courses/<int:courseId>", views.course_details, name="courses_details")
 ]
