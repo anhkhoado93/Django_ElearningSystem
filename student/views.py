@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import connection
-
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 def homepage(request):
@@ -24,13 +24,21 @@ def aboutpage(request):
     return render(request, "student/about.html")
 
 def register(request):
-        if request.method == 'POST':
-            courseId = int(request.POST.get('courseId'))
-            with connection.cursor() as cursor:
-                cursor.callproc('studentEnrollCourse', [studentId, semester, courseId])
-                result = cursor.fetchall()
-            
-        return render(request, "student/register.html")
+    if 'regCourse' not in request.session:
+        request.session["regCourse"] = []
+    if request.method == 'POST':
+        print(request.session["regCourse"])
+        re = request.POST.get('input')
+        re = re.split(' ')
+        if re[0] == 'select':
+            request.session["regCourse"] += [re[1]]
+            print(request.session["regCourse"])
+            return render(request, "student/register.html", {'regCourse': request.session["regCourse"]})
+        elif re[0] == 'remove':
+            request.session["regCourse"] = list(filter(lambda x: x != re[1], request.session["regCourse"]))
+            print(request.session["regCourse"])
+            return render(request, "student/register.html", {'regCourse': request.session["regCourse"]})
+    return render(request, "student/register.html", {'regCourse': request.session["regCourse"]})
 
 def course_details(request, courseId):
     studentId = 1852471

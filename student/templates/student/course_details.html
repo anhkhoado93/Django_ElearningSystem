@@ -2,9 +2,12 @@
 {% load static %}
 
 {% block content-body %}
-<b>{{info[courseName]}}</b>
+<h1>Course Information: {{info[courseName]}}</h1>
 <text>Course ID: {{info.courseId}}</text>
+<hr class="mt-2 mb-3"/>
 <text>Class ID: {{info.classId}}</text>
+<hr class="mt-2 mb-3"/>
 <text>Lecturer Name: {{info.lecturerName}}</text>
+<hr class="mt-2 mb-3"/>
 <text>Textbook Names: {{info.textbookName}}</text>
 {% endblock content-body %}

@@ -9,10 +9,10 @@
     {% else %}
     <div class="row w-100 d-flex">
         {% for c in courseList %}
-            <div class="col-4 justify-content-center align-items-center" style="height: 200px;">
-                <a href="{% url 'student:courses'%}/{{c.courseId}}" class="justify-content-center align-items-center" style = "width: 75%; height: 80%; background-color: #97aec5f5;">
+            <div style="height: 200px;" class="col-4 justify-content-center align-items-center" >
+                <a href="{% url 'student:courses'%}/{{c.courseId}}" class="justify-content-center align-items-center" style = "width: 75%; height: 80%; ">
                     <div class="w-100" style='height: 70%;top: 0px; background-color: black;'></div>
-                    <div class="w-100" style='height: 30%;bottom: 0px; color: rgb(0, 0, 0); opacity: 0.6; padding: 0px 10px;'>
+                    <div class="w-100" style='height: 30%;bottom: 0px; color: rgb(0, 0, 0); opacity: 0.6; padding: 0px 10px;  background-color: #00000054;'>
                         <p>{{c.courseName}} <br/> {{c.courseId}}</p>
                     </div>
                 </a>
@@ -20,10 +20,10 @@
         {% endfor %}
     </div>
     {%endif%}
-    <h2>Other Info</h2>
+    <!-- <h2>Other Info</h2>
     <div class="row">
         ...
-    </div>
+    </div> -->
 </div>
 
 {% endblock content-body %}
