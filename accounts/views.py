@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from .models import User
 from django.contrib import messages
 
 # Create your views here.
@@ -13,6 +13,8 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
+            request.session['id'] = user.user_id
+            request.session['user_type'] = user.user_type
             redirect_url = request.GET.get('next', 'home')
             return redirect(redirect_url)
         else:
