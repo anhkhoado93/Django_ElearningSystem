@@ -27,3 +27,14 @@
 </div>
 
 {% endblock content-body %}
+
+{% block right-body %}
+<form action="" method="POST">
+    <select name="myselect" id="myselect" onchange="this.form.submit()">
+        <option value="semester 201">201</option>
+        <option value="semester 192">192</option>
+        <option value="semester 191">191</option>
+        <option value="semester 182">182</option>
+    </select>
+</form>
+{% endblock right-body %}
