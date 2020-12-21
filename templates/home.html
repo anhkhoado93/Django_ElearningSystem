@@ -3,24 +3,47 @@
 
 {%block custom_css%} 
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+.box_content {
+    color: black; 
+    width:100%; 
+    height: 100%; 
+    position: relative;
+}
 {%endblock custom_css%}
+
 {% block body %}
         <!-- Prop to student or teacher-->
         <div class='d-flex justify-content-center align-items-center p-2 canvas' 
         style=" background-color:#0088D6">
-
-            <div class="floating-button" style="margin-right: 20px; background-color: white;">
-                <a class='d-flex justify-content-center align-items-center flex-column' href="{% url 'student:home' %}" style="color: black; width:100%; height: 100%; position: relative;">
+            <div class="floating-button" style="margin: 20px; background-color: white;">
+                <a class='d-flex justify-content-center align-items-center flex-column box_content' href="{% url 'student:home' %}">
                     <img src="{% static 'images/student.jpeg' %}" alt="Avatar">
                     <b>STUDENT</b>
                 </a>
             </div>
-            <div class="floating-button" style="margin-left: 20px; background-color: white;">
-                <a class='d-flex justify-content-center align-items-center flex-column'  href="{% url 'lecturer:home' %}" style="color: black; width:100%; height: 100%; position: relative;">
+            <div class="floating-button" style="margin: 20px; background-color: white;">
+                <a class='d-flex justify-content-center align-items-center flex-column box_content'  href="{% url 'lecturer:home' %}">
                     <img src="{% static 'images/teachers.png' %}" alt="Avatar">
                     <b>TEACHER</b>
                 </a>
             </div>
-
+            <div class="break"></div>
+            <div class="floating-button" style="margin: 20px; background-color: white;">
+                <a class='d-flex justify-content-center align-items-center flex-column box_content' href="{#}">
+                    <img src="{% static 'images/student.jpeg' %}" alt="Avatar">
+                    <b>STUDENT</b>
+                </a>
+            </div>
+            <div class="floating-button" style="margin: 20px; background-color: white;">
+                <a class='d-flex justify-content-center align-items-center flex-column box_content'  href="{#}">
+                    <img src="{% static 'images/teachers.png' %}" alt="Avatar">
+                    <b>TEACHER</b>
+                </a>
+            </div>
+            
         </div>
 {% endblock body %}

@@ -1,5 +1,20 @@
 {% extends 'student/studentbase.html' %}
 {% load static %}
+
+{%block custom_css%} 
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+.custom-button-prop {
+    border: 5px solid black; 
+    margin: 10px; 
+    background-color: white;
+}
+.custom-link-prop {
+    color: black;
+    width:100%;
+    height: 100%;
+     position: relative;
+}
+{%endblock custom_css%}
 {% block content-body %}
 <div class='d-flex position-absolute h-100 w-100 justify-content-center align-items-center p-2'>
     <!-- <div class="floating-button" style="border: 5px solid black;margin: 10px; background-color: white;">
@@ -8,20 +23,20 @@
             ACCOUNT
         </a>
     </div> -->
-    <div class="floating-button" style=" border: 5px solid black; margin: 10px; background-color: white;">
-        <a class='d-flex justify-content-center align-items-center flex-column' href="{% url 'student:courses' %}" style="color: black; width:100%; height: 100%; position: relative;">
+    <div class="floating-button custom-button-prop">
+        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop' href="{% url 'student:courses' %}">
             <img src="{% static 'images/course.png' %}" alt="Avatar">
             COURSE
         </a>
     </div>
-    <div class="floating-button" style="border: 5px solid black; margin: 10px;  background-color: white;">
-        <a class='d-flex justify-content-center align-items-center flex-column'  href="{% url 'student:register' %}" style="color: black; width:100%; height: 100%; position: relative;">
+    <div class="floating-button custom-button-prop">
+        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop'  href="{% url 'student:register' %}">
             <img src="{% static 'images/register.png' %}" alt="Avatar">
             REGISTER
         </a>
     </div>
-    <div class="floating-button" style="border: 5px solid black;margin: 10px;  background-color: white;">
-        <a class='d-flex justify-content-center align-items-center flex-column'  href="{% url 'student:about' %}" style="color: black; width:100%; height: 100%; position: relative;">
+    <div class="floating-button custom-button-prop">
+        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop'  href="{% url 'student:about' %}" >
             <img src="#" alt="ABOUT">
             ABOUT
         </a>
