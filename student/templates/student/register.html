@@ -25,39 +25,19 @@
         <th>Select</th>
     </thead>
     <tbody>
+        {% for c in openCourse %}
         <tr>
-            <td>cc01</td>
-            <td>abc</td>
+            <td>{{c.CourseId}}</td>
+            <td>{{c.CourseName}}</td>
             <td>
-                {%if 'cc01' in regCourse%}
-                <button  name="input" value="select cc01" disabled>Select</button> 
+                {%if c.CourseId in regCourse%}
+                <button  name="input" value="select {{c.CourseId}}" disabled>Select</button> 
                 {%else%}
-                <button  name="input" value="select cc01">Select</button> 
+                <button  name="input" value="select {{c.CourseId}}">Select</button> 
                 {%endif%}
             </td>
         </tr>
-        <tr>
-            <td>cc02</td>
-            <td>xyz</td>
-            <td>
-                {%if 'cc02' in regCourse%}
-                <button  name="input" value="select cc02" disabled>Select</button> 
-                {%else%}
-                <button  name="input" value="select cc02">Select</button> 
-                {%endif%}
-            </td>
-        </tr>
-        <tr>
-            <td>cc03</td>
-            <td>abcxyz</td>
-            <td>
-                {%if 'cc03' in regCourse%}
-                <button  name="input" value="select cc03" disabled>Select</button> 
-                {%else%}
-                <button name="input" value="select cc03">Select</button> 
-                {%endif%}
-            </td>
-        </tr>
+        {%endfor%}
     </tbody>
     </table>
 </form>

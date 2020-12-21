@@ -2,13 +2,12 @@
 {% load static %}
 
 {%block custom_css%} 
-<link rel="stylesheet" type="text/css" href="{% static 'bkel/styles.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 {%endblock custom_css%}
 {% block body %}
         <!-- Prop to student or teacher-->
         <div class='d-flex justify-content-center align-items-center p-2 canvas' 
-        style=" background-color: rgb(105, 125, 238)">
+        style=" background-color:#0088D6">
 
             <div class="floating-button" style="margin-right: 20px; background-color: white;">
                 <a class='d-flex justify-content-center align-items-center flex-column' href="{% url 'student:home' %}" style="color: black; width:100%; height: 100%; position: relative;">
