@@ -81,53 +81,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BKEL',
-        'USER': 'khoa',
-        'PASSWORD': 'daden',
-        'HOST': '172.16.8.98',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    },
-    'office': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'office',
-        'PASSWORD': 'phongdaotao',
-        'HOST': '172.16.8.98',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    },
-    'department': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'department',
-        'PASSWORD': 'khoa',
-        'HOST': '172.16.8.98',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    },
-    'lecturer': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'lecturer',
-        'PASSWORD': 'giangvien',
-        'HOST': '172.16.8.98',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    },
-    'student': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'student',
-        'PASSWORD': 'sinhvien',
-        'HOST': '172.16.8.98',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"

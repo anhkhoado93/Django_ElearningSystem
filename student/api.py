@@ -29,11 +29,23 @@ def getEnrolledCourseInfo(studentId, courseId, semester):
 def getOpenedCourses(semester):
     with connection.cursor() as cursor:
         cursor.callproc('studentGetOpenedCourses', [semester])
-        result = [{'CourseId': res[0], 'CourseName': res[1]} for res in cursor.fetchall()]
+        result = [{'CourseId': res[0], 'CourseName': res[1], 'Credits': res[2]} for res in cursor.fetchall()]
     return result
 
 def registerCourse(studentId, courseId, semester):
     with connection.cursor() as cursor:
         cursor.callproc('studentEnrollCourse', [studentId, semester, courseId])
         result = cursor.fetchall()
+    return result
+
+def getTotalCredits(studentId, semester):
+    with connection.cursor() as cursor:
+        cursor.callproc('studentCountEnrolledCredits', [studentId, semester])
+        result = cursor.fetchone()
+    return result
+
+def getTotalEnrolledCourses(studentId, semester):
+    with connection.cursor() as cursor:
+        cursor.callproc('studentCountEnrolledCourses', [studentId, semester])
+        result = cursor.fetchone()
     return result
