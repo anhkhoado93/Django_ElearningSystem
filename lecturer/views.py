@@ -34,9 +34,29 @@ def manageCourse(request):
 def manageCourseDetails(request, semester, courseId):
     lecturerId = request.session['id']
     textbook = getTextbooksOfManagedCourse(lecturerId, semester, courseId) # List(Dict(isbn, name))
+    for i in textbook: i['Isbn'] = str(i['Isbn'])
+    usedBookIsbn = [t['Isbn'] for t in textbook]
+    allTextbook = getUsedTextbooksOfManagedCourse(courseId)
+    for i in allTextbook: i['Isbn'] = str(i['Isbn'])
     classes = getClassesOfManagedCourse(lecturerId,semester,courseId) #List(classId)
+    if request.method == 'POST':
+        re = request.POST.get('input')
+        try:
+            if re not in usedBookIsbn: 
+                assignTextbook(lecturerId, semester, courseId, re)
+                textbook = getTextbooksOfManagedCourse(lecturerId, semester, courseId) # List(Dict(isbn, name))
+                for i in textbook: i['Isbn'] = str(i['Isbn'])
+                usedBookIsbn = [t['Isbn'] for t in textbook]
+                
+            else:
+                unassignTextbook(lecturerId, semester, courseId, re)  
+                textbook = getTextbooksOfManagedCourse(lecturerId, semester, courseId) # List(Dict(isbn, name))
+                for i in textbook: i['Isbn'] = str(i['Isbn'])
+                usedBookIsbn = [t['Isbn'] for t in textbook]
+        except Exception as e:
+            pass
     # allBook = getBookUsedByCourse(courseId)
-    return render(request, "lecturer/course_details.html", { 'courseid': courseId, 'textbook': textbook, 'class': classes , 'lockButton': semester != '201'})
+    return render(request, "lecturer/course_details.html", { 'courseid': courseId, 'usedBookIsbn': usedBookIsbn, 'textbook': textbook, 'allBook': allTextbook, 'class': classes , 'lockButton': semester != '201'})
 
 @login_required
 @user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
@@ -46,9 +66,17 @@ def aboutpage(request):
 @login_required
 @user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None) 
 def manageClass(request):
-    pass
+    lecturerId = request.session['id']
+    semester = 191
+    classList = getManagedClasses(lecturerId, semester)
+    return render(request, "lecturer/class.html", {'classList': classList})
 
 @login_required
 @user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
-def classDetails(request):
-    pass
+def classDetails(request, classId):
+    lecturerId = request.session['id']
+    semester = 191
+    textbook = getTextbooksOfManagedClass(lecturerId, classId)
+    studentList = getStudentsOfManagedClass(lecturerId, classId)
+    noStudent = len(studentList)
+    return render(request, "lecturer/class_details.html", {'textbook': textbook, 'noStudent': noStudent, 'studentList': studentList})

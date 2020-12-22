@@ -1,0 +1,32 @@
+{% extends 'lecturer/lecturerbase.html' %}
+{% load static %}
+
+{% block content-body %}
+<div style="margin-top: 50px;">
+    <h1>Class Info</h1>
+    <hr class="mt-2 mb-3"/>
+
+    <h3>Textbook</h3>
+    <ul>
+        {% for i in textbook %}
+        <li>{{i.Title}}: <b>{{i.Isbn}}</b></li>
+        {% endfor %}
+    </ul>
+    <hr class="mt-2 mb-3"/>
+    <h3>Statistic</h3>
+    <ul>
+        <b>Number of Student: </b> {{noStudent}}
+    </ul>
+    <hr class="mt-2 mb-3"/>
+    <h3>Students</h3>
+    <ul>
+        {% for i in studentList %}
+        <li>{{i.StudentName}}: {{i.StudentId}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content-body %}
+
+{% block right-body %}
+&nbsp;
+{% endblock right-body %}
