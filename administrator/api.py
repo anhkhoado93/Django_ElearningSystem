@@ -23,10 +23,11 @@ def create_user(id, user_type, username, email, password, name=None):
             student.save()
         user = User.objects.using(db).create_user(
             user_id=id,
+            user_type=user_type,
             username=username,
+            user_fullname=name,
             email=email,
-            password=password,
-            user_type=user_type
+            password=password
         )
         user.save()
     except:
