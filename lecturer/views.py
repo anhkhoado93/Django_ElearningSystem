@@ -1,40 +1,41 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import connection
-
+from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
+OFFICE = 1
+DEPARTMENT = 2
+LECTURER = 3
+STUDENT = 4
+
 def is_lecturer(user):
-    pass
+    return user.user_type == LECTURER
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "{url accounts:login}",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
 def homepage(request):
-    return render(request, "student/home.html")
+    return render(request, "lecturer/home.html")
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "{url accounts:login}",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
 def manageCourse(request):
     studentId = None
     semester = None
     result_list = None
-    with connection.cursor() as cursor:
-        cursor.callproc('studentGetClassesAndLecturers', [studentId, semester])
-        result = cursor.fetchall()
-        result_list = [{'courseId': i[0], 'courseName': i[1]} for i in result]
-    return render(request, "student/course.html", { 'courseList': result_list })
+    return render(request, "lecturer/course.html", { 'courseList': result_list })
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "{url accounts:login}",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
 def aboutpage(request):
-    return render(request, "student/about.html")
+    return render(request, "lecturer/about.html")
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "{url accounts:login}",redirect_field_name=None) 
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None) 
 def manageClass(request):
     pass
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "{url accounts:login}",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
 def classDetails(request):
     pass

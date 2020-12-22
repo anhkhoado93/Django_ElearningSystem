@@ -30,6 +30,7 @@
 
 {% block right-body %}
 <form action="" method="POST">
+    {% csrf_token %}
     <select name="myselect" id="myselect" onchange="this.form.submit()">
         <option value="semester 201">201</option>
         <option value="semester 192">192</option>

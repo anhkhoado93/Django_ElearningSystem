@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%block custom_css%} 
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{%endblock custom_css%}
+
+{% block body %}
+<div class="position-absolute h-100" style="width: 12.5%; left: 0px;">
+    {% block left-body %}
+    {% endblock left-body %}
+</div>
+<div class="position-absolute w-75 h-100" style="margin-left: 12.5%;">
+    {% block content-body %}
+    {% endblock content-body %}
+</div>
+<div class="position-absolute h-100" style="width: 12.5%; right: 0px;">
+    {% block right-body %}
+    {% endblock right-body %}
+</div>
+{% endblock body %}

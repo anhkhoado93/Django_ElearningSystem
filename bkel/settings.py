@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'khoa',
         'PASSWORD': 'daden',
-        'HOST': '172.16.8.98',
+        'HOST': '192.168.1.195',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'office',
         'PASSWORD': 'phongdaotao',
-        'HOST': '172.16.8.98',
+        'HOST': '192.168.1.195',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -105,7 +105,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'department',
         'PASSWORD': 'khoa',
-        'HOST': '172.16.8.98',
+        'HOST': '192.168.1.195',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -116,7 +116,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'lecturer',
         'PASSWORD': 'giangvien',
-        'HOST': '172.16.8.98',
+        'HOST': '192.168.1.195',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -127,7 +127,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'student',
         'PASSWORD': 'sinhvien',
-        'HOST': '172.16.8.98',
+        'HOST': '192.168.1.195',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -183,6 +183,10 @@ AUTH_USER_MODEL = "accounts.User"
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
+    
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
