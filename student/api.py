@@ -12,18 +12,20 @@ def getEnrolledCourseInfo(studentId, courseId, semester):
         with connection.cursor() as cursor:
             cursor.callproc('studentGetAssignedClassOfEnrolledCourse', [studentId, semester, courseId])
             assigned_class = cursor.fetchone()
+        with connection.cursor() as cursor:
             cursor.callproc('studentGetLecturersOfAssignedClass', [studentId, assigned_class])
             lecturers = cursor.fetchall()
+        with connection.cursor() as cursor:
             cursor.callproc('studentGetTextbooksOfEnrolledCourse', [studentId, semester, courseId])
             textbooks = cursor.fetchall()
-            result = {
-                'CourseId': courseId, 
-                'ClassId': assigned_class,
-                'Lecturers': [res[0] for res in lecturers],
-                'Textbooks': [res[0] for res in textbooks]
-            }
+        result = {
+            'CourseId': courseId, 
+            'ClassId': assigned_class,
+            'Lecturers': [res[0] for res in lecturers],
+            'Textbooks': [res[0] for res in textbooks]
+        }
         return result
-    except:
+    except Exception as e:
         raise Exception(f"You didn\'t enroll this course in semester {semester}.")
 
 def getOpenedCourses(semester):

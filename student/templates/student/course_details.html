@@ -2,32 +2,28 @@
 {% load static %}
 
 {% block content-body %}
-<text><b>Course ID:</b> {{info.CourseId}}</text>
-<hr class="mt-2 mb-3"/>
-<text><b>Class ID:</b> {{info.ClassId}}</text>
-<hr class="mt-2 mb-3"/>
-<text><b>
-    Lecturer(s) Name:
-    {%with first=True%}
-    {%for l in Lecturers%}
-        {%if first%}
+<div style="margin-top: 50px;">
+    <text><b>Course ID:</b> {{info.CourseId}}</text>
+    <hr class="mt-2 mb-3"/>
+    <text><b>Class ID:</b> 
+        {% if info.ClassId %}
+            {{ info.ClassId.0 }}
+        {% else %}
+            You have not been assigned
+        {% endif %}
+    </text>
+    <hr class="mt-2 mb-3"/>
+    <text><b> Lecturer(s) Name: </b>
+        {%for l in info.Lecturers%}
             {{l}}
-            {%first=False%}
-        {%else%}
-            , {{l}}
-        {%endif%}
-    {%endfor%}
-</b></text>
-<hr class="mt-2 mb-3"/>
-<text><b>Textbook Names:</b> 
-    {%with first=True%}
-    {%for l in Textbooks%}
-        {%if first%}
+        {%endfor%}
+    </text>
+    <hr class="mt-2 mb-3"/>
+    <text><b>Textbook Names:</b>
+        {%for l in info.Textbooks%}
             {{l}}
-            {%first=False%}
-        {%else%}
-            , {{l}}
-        {%endif%}
-    {%endfor%}
-</text>
+        {%endfor%}
+    </text>
+
+</div>
 {% endblock content-body %}

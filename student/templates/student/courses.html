@@ -10,12 +10,14 @@
     <div class="row w-100 d-flex">
         {% for c in courseList %}
             <div style="height: 200px;" class="col-4 justify-content-center align-items-center" >
-                <a href="{% url 'student:courses'%}/{{c.courseId}}" class="justify-content-center align-items-center" style = "width: 75%; height: 80%; ">
-                    <div class="w-100" style='height: 70%;top: 0px; background-color: black;'></div>
-                    <div class="w-100" style='height: 30%;bottom: 0px; color: rgb(0, 0, 0); opacity: 0.6; padding: 0px 10px;  background-color: #00000054;'>
-                        <p>{{c.CourseName}} <br/> {{c.CourseId}}</p>
-                    </div>
-                </a>
+                <div class="w-75 h-75" style = "margin: 12.5%;">
+                    <a href="{% url 'student:courses'%}/{{c.CourseId}}" class="justify-content-center align-items-center">
+                        <div class="w-100" style='height: 70%;top: 0px; background-color: black;'></div>
+                        <div class="w-100" style='height: 30%;bottom: 0px; color: rgb(0, 0, 0); opacity: 0.6; padding: 0px 10px;  background-color: #00000054;'>
+                            <p>{{c.CourseName}} <br/> {{c.CourseId}}</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -29,13 +31,18 @@
 {% endblock content-body %}
 
 {% block right-body %}
-<form action="" method="POST">
-    {% csrf_token %}
-    <select name="myselect" id="myselect" onchange="this.form.submit()">
-        <option value="semester 201">201</option>
-        <option value="semester 192">192</option>
-        <option value="semester 191">191</option>
-        <option value="semester 182">182</option>
-    </select>
-</form>
+<div style="margin-top: 50px;">
+    <text><b>Current Semester:</b> {{semester}}</text>
+    <text><b>Choose Semester:</b></text>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <select name="myselect" id="myselect" onChange="form.submit();">
+            <option></option>
+            <option value="201">201</option>
+            <option value="192">192</option>
+            <option value="191">191</option>
+            <option value="182">182</option>
+        </select>
+    </form>
+</div>
 {% endblock right-body %}

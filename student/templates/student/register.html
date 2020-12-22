@@ -26,9 +26,9 @@
             <td>{{c.Credits}}</td>
             <td>
                 {% if c.CourseId in submittedCourse%}
-                <button  name="input" value="{{c.CourseId}}">Cancel</button> 
+                <button type="submit" name="input" value="{{c.CourseId}}">Cancel</button> 
                 {% else %}
-                <button  name="input" value="{{c.CourseId}}">Submit</button> 
+                <button type="submit" name="input" value="{{c.CourseId}}">Submit</button> 
                 {%endif%}
             </td>
         </tr>
