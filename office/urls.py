@@ -3,5 +3,9 @@ from . import views
 
 app_name = "office"
 urlpatterns = [
-    # TODO: Add urls here
+    path("home", views.homepage, name="home"),
+    path("deps", views.deppage, name="department"),
+    path("deps/<depsId>", views.viewpage, name="view"),
+    path("deps/<deps>/<courseId>", views.coursepage, name="courses"),
+    path("deps/<deps>/<courseId>/<classId>", views.classpage, name="class")
 ]
