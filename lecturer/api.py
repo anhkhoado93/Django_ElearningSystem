@@ -7,6 +7,12 @@ def getManagedCourses(lecturerId, semester):
         result = [{'CourseId': res[0], 'CourseName': res[1]} for res in cursor.fetchall()]
     return result
 
+def getUsedTextbooksOfManagedCourse(courseId):
+    with connection.cursor() as cursor:
+        cursor.callproc('lecturerGetUsedTextbooksOfManagedCourse', [courseId])
+        result = [{'Isbn': res[0], 'Title': res[1]} for res in cursor.fetchall()]
+    return result
+
 def getTextbooksOfManagedCourse(lecturerId, semester, courseId):
     with connection.cursor() as cursor:
         cursor.callproc('lecturerGetTextbooksOfManagedCourse', [lecturerId, semester, courseId])
