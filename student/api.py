@@ -25,7 +25,7 @@ def getEnrolledCourseInfo(studentId, courseId, semester):
             'Textbooks': [res[1] for res in textbooks]
         }
         return result
-    except Exception as e:
+    except:
         raise Exception(f"You didn\'t enroll this course in semester {semester}.")
 
 def getOpenedCourses(semester):
