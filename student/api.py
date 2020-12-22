@@ -22,7 +22,7 @@ def getEnrolledCourseInfo(studentId, courseId, semester):
             'CourseId': courseId, 
             'ClassId': assigned_class,
             'Lecturers': [res[0] for res in lecturers],
-            'Textbooks': [res[0] for res in textbooks]
+            'Textbooks': [res[1] for res in textbooks]
         }
         return result
     except Exception as e:
@@ -44,12 +44,12 @@ def cancelCourse(studentId, courseId, semester):
 
 def getTotalCredits(studentId, semester):
     with connection.cursor() as cursor:
-        cursor.callproc('studentCountEnrolledCredits', [studentId, semester])
-        result = cursor.fetchone()[0]
+        result = 0
+        cursor.callproc('studentCountEnrolledCredits', [studentId, semester, result])
     return result
 
 def getTotalEnrolledCourses(studentId, semester):
     with connection.cursor() as cursor:
-        cursor.callproc('studentCountEnrolledCourses', [studentId, semester])
-        result = cursor.fetchone()[0]
+        result = 0
+        cursor.callproc('studentCountEnrolledCourses', [studentId, semester, result])
     return result
