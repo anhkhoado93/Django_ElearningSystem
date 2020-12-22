@@ -38,37 +38,26 @@ def aboutpage(request):
 @user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)
 def register(request):
     studentId = 1852471
-    totalCredit = getTotalCredit(studentId)
     if 'semester' not in request.session:
         request.session["semester"] = 201
+    totalCredit = getTotalCredits(studentId, request.session["semester"])
     submittedCourse = getEnrolledCourses(studentId=1852471, semester=request.session["semester"])
     openCourseList = getOpenedCourses(request.session["semester"])
-    if 'regCourse' not in request.session:
-        request.session["regCourse"] = []
-        print("submitted:", submittedCourse)
-        if submittedCourse:
-            request.session["regCourse"] += [r['CourseId'] for r in submittedCourse]
-
+    
     if request.method == 'POST':
         re = request.POST.get('input')
-        re = re.split(' ')
-        if re[0] == 'select':
-            request.session["regCourse"] += [re[1]]
-        elif re[0] == 'remove':
-            request.session["regCourse"] = list(filter(lambda x: x != re[1], request.session["regCourse"]))
-        elif re[0] == 'semester':
-            request.session['semester'] = re[1]
-        elif re[0] == 'submit':
-            try:
-                for r in request.session["regCourse"]:
-                    registerCourse(studentId=studentId, courseId=r, semester=request.session["semester"])
-            except:
-                pass
-            finally:
-                return render(request, "{% url 'student:home' %}")
+        try:
+            if re not in submittedCourse:   
+                registerCourse(studentId=studentId, courseId=re, semester=request.session["semester"])
+            else:
+                cancelCourse(studentId=studentId, courseId=re, semester=request.session["semester"])
+        except:
+            pass
+        finally:
+            return render(request, "{% url 'student:home' %}")
 
     return render(request, "student/register.html",  
-    {'regCourse': request.session["regCourse"],'openCourse': openCourseList, 'submittedCourse': submittedCourse, 'totalCredit': request.session['totalCredit']  })
+    {'openCourse': openCourseList, 'submittedCourse': submittedCourse, 'totalCredit': totalCredit  })
 
 @login_required
 @user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)

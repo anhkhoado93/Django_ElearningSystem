@@ -4,6 +4,7 @@
 {%block custom_css%} 
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 {%endblock custom_css%}
+
 {% block content-body %}
 <h1>Register</h1>
 <h1>New Course</h1>
@@ -24,12 +25,10 @@
             <td>{{c.CourseName}}</td>
             <td>{{c.Credits}}</td>
             <td>
-                {%elif c.CourseId not in regCourse and c.CourseId not in submittedCourse%}
-                <button  name="input" value="select {{c.CourseId}}">Select</button> 
-                {% elif c.CourseId in submittedCourse %}
-                <i>Submitted</i>
-                {% elif c.CourseId in regCourse %}
-                <button  name="input" value="select {{c.CourseId}}" disabled>Select</button> 
+                {% if c.CourseId in submittedCourse%}
+                <button  name="input" value="{{c.CourseId}}">Cancel</button> 
+                {% else %}
+                <button  name="input" value="{{c.CourseId}}">Submit</button> 
                 {%endif%}
             </td>
         </tr>
@@ -38,54 +37,7 @@
 </table>
 </div>
 </form>
-<h1>Added Course</h1>
-<form action="" method="POST">
-    {% csrf_token %}
-<table id="example" class="table table-striped table-bordered" style="width:100%">
-    <thead>
-        <th>Course ID</th>
-        <th>Remove</th>
-    </thead>
-    <tbody>
-        {% for rc in regCourse %}
-        <tr>
-            <td>{{rc}}</td>
-            <td>
-                {%if rc not in submittedCourse%}
-                <button  name="input" value="remove {{c.CourseId}}">Remove</button> 
-                {% else %}
-                <i>submitted</i>
-                {%endif%}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-</form>
-<h3>Total number of credit: </h3>
 
-<form action="" method="POST">
-    {% csrf_token %}
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Prompt</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            This cannot be undone.
-            Are you sure?
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit"  value="submit" class="btn btn-primary">Submit</button>
-        </div>
-        </div>
-    </div>
-</div>
-</form>
+<h3>Total number of credit(s): {{totalCredit}}</h3>
 
 {% endblock content-body %}

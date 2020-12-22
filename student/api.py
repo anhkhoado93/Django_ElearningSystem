@@ -41,11 +41,11 @@ def registerCourse(studentId, courseId, semester):
 def getTotalCredits(studentId, semester):
     with connection.cursor() as cursor:
         cursor.callproc('studentCountEnrolledCredits', [studentId, semester])
-        result = cursor.fetchone()
+        result = cursor.fetchone()[0]
     return result
 
 def getTotalEnrolledCourses(studentId, semester):
     with connection.cursor() as cursor:
         cursor.callproc('studentCountEnrolledCourses', [studentId, semester])
-        result = cursor.fetchone()
+        result = cursor.fetchone()[0]
     return result
