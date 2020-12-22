@@ -49,6 +49,8 @@ def getNumberOfStudentsOfManagedClass(lecturerId, classId):
     with connection.cursor() as cursor:
         result = 0
         cursor.callproc('lecturerCountStudentsOfManagedClass', [lecturerId, classId, result])
+        cursor.execute("SELECT @result")
+        result = cursor.fetchone()
     return result
 
 def getTextbooksOfManagedClass(lecturerId, classId):

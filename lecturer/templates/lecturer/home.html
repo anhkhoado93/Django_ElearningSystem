@@ -1,8 +1,8 @@
-{% extends 'student/studentbase.html' %}
+{% extends 'lecturer/lecturerbase.html' %}
 {% load static %}
 
 {%block custom_css%} 
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<style>
 .custom-button-prop {
     border: 5px solid black; 
     margin: 10px; 
@@ -14,6 +14,7 @@
     height: 100%;
      position: relative;
 }
+</style>
 {%endblock custom_css%}
 {% block content-body %}
 <div class='d-flex position-absolute h-100 w-100 justify-content-center align-items-center p-2'>
@@ -24,15 +25,15 @@
         </a>
     </div> -->
     <div class="floating-button custom-button-prop">
-        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop' href="{% url 'lecturer:manageCourse' %}">
+        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop' href="{% url 'lecturer:courses' %}">
             <img src="{% static 'images/course.png' %}" alt="Avatar">
-            COURSE
+            MANAGE COURSE
         </a>
     </div>
     <div class="floating-button custom-button-prop">
-        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop'  href="{% url 'lecturer:manageClass' %}">
+        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop'  href="{% url 'lecturer:class' %}">
             <img src="{% static 'images/register.png' %}" alt="Avatar">
-            REGISTER
+            MANAGE CLASS
         </a>
     </div>
     <div class="floating-button custom-button-prop">
