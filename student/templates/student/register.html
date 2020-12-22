@@ -24,8 +24,7 @@
             <td>{{c.CourseName}}</td>
             <td>{{c.Credits}}</td>
             <td>
-
-                {%if c.CourseId not in regCourse and c.CourseId not in submittedCourse%}
+                {%elif c.CourseId not in regCourse and c.CourseId not in submittedCourse%}
                 <button  name="input" value="select {{c.CourseId}}">Select</button> 
                 {% elif c.CourseId in submittedCourse %}
                 <i>Submitted</i>

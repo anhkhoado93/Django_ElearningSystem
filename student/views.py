@@ -38,7 +38,7 @@ def aboutpage(request):
 @user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)
 def register(request):
     studentId = 1852471
-    request.session['totalCredit'] = getTotalCredit(studentId)
+    totalCredit = getTotalCredit(studentId)
     if 'semester' not in request.session:
         request.session["semester"] = 201
     submittedCourse = getEnrolledCourses(studentId=1852471, semester=request.session["semester"])
@@ -54,23 +54,18 @@ def register(request):
         re = re.split(' ')
         if re[0] == 'select':
             request.session["regCourse"] += [re[1]]
-            for r in openCourseList:
-                if r['CourseId'] == re[1]:
-                    request.session['totalCredit']  += r['Credit']
-                    break
         elif re[0] == 'remove':
             request.session["regCourse"] = list(filter(lambda x: x != re[1], request.session["regCourse"]))
-            for r in openCourseList:
-                if r['CourseId'] == re[1]:
-                    request.session['totalCredit']  -= r['Credit']
-                    break
         elif re[0] == 'semester':
             request.session['semester'] = re[1]
         elif re[0] == 'submit':
-            for r in request.session["regCourse"]:
-                registerCourse(studentId=studentId, courseId=r, semester=request.session["semester"])
-            del request.session['totalCredit']
-            return render(request, "{% url 'student:home' %}")
+            try:
+                for r in request.session["regCourse"]:
+                    registerCourse(studentId=studentId, courseId=r, semester=request.session["semester"])
+            except:
+                pass
+            finally:
+                return render(request, "{% url 'student:home' %}")
 
     return render(request, "student/register.html",  
     {'regCourse': request.session["regCourse"],'openCourse': openCourseList, 'submittedCourse': submittedCourse, 'totalCredit': request.session['totalCredit']  })
