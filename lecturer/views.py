@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.contrib.auth.decorators import user_passes_test
+from .api import *
 # Create your views here.
 
 OFFICE = 1
@@ -20,10 +21,22 @@ def homepage(request):
 @login_required
 @user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
 def manageCourse(request):
-    studentId = None
-    semester = None
-    result_list = None
-    return render(request, "lecturer/course.html", { 'courseList': result_list })
+    lecturerId = request.session['id']
+    semester = 201
+    if request.method == 'POST':
+        re = request.POST.get('myselect')
+        semester = re
+    result_list = getManagedCourses(lecturerId, semester)
+    return render(request, "lecturer/courses.html", { 'courseList': result_list, 'semester': semester })
+
+@login_required
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
+def manageCourseDetails(request, semester, courseId):
+    lecturerId = request.session['id']
+    textbook = getTextbooksOfManagedCourse(lecturerId, semester, courseId) # List(Dict(isbn, name))
+    classes = getClassesOfManagedCourse(lecturerId,semester,courseId) #List(classId)
+    # allBook = getBookUsedByCourse(courseId)
+    return render(request, "lecturer/course_details.html", { 'courseid': courseId, 'textbook': textbook, 'class': classes , 'lockButton': semester != '201'})
 
 @login_required
 @user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)

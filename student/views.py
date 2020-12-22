@@ -54,7 +54,7 @@ def register(request):
                 submittedCourse = list(filter(lambda x: x != re ,submittedCourse))
         except Exception as e:
             pass
-    totalCredit = 0
+    totalCredit = getTotalCredits(studentId, request.session["semester"])
     return render(request, "student/register.html",  
     {'openCourse': openCourseList, 'submittedCourse': submittedCourse, 'totalCredit': totalCredit  })
 

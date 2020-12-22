@@ -1,4 +1,4 @@
-{% extends 'student/studentbase.html' %}
+{% extends 'lecturer/lecturerbase.html' %}
 {% load static %}
 
 {% block content-body %}
@@ -11,7 +11,7 @@
         {% for c in courseList %}
             <div style="height: 200px;" class="col-4 justify-content-center align-items-center" >
                 <div class="w-75 h-75" style = "margin: 12.5%;">
-                    <a href="{% url 'student:courses'%}/{{c.CourseId}}" class="justify-content-center align-items-center">
+                    <a href="{% url 'lecturer:courses'%}/{{semester}}/{{c.CourseId}}" class="justify-content-center align-items-center">
                         <div class="w-100" style='height: 70%;top: 0px; background-color: black;'></div>
                         <div class="w-100" style='height: 30%;bottom: 0px; color: rgb(0, 0, 0); opacity: 0.6; padding: 0px 10px;  background-color: #00000054;'>
                             <p>{{c.CourseName}} <br/> {{c.CourseId}}</p>

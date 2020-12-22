@@ -1,0 +1,40 @@
+{% extends 'lecturer/lecturerbase.html' %}
+{% load static %}
+
+{% block content-body %}
+<div style="margin-top: 50px;">
+    <h3>Course ID</h3>
+    <ul><li>{{courseid}}</li></ul>
+
+    <hr class="mt-2 mb-3"/>
+
+    <h3>Textbook</h3>
+    <ul>
+        {% for i in textbook %}
+        <li>{{i.Title}}: <b>{{i.Isbn}}</b></li>
+        {% endfor %}
+    </ul>
+    {% if not lockButton %}
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Add Book
+    </a>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+        
+        </div>
+      </div>
+    {%endif%}
+    <hr class="mt-2 mb-3"/>
+
+    <h3>Class</h3>
+    <ul>
+        {% for i in class %}
+        <li>{{i}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content-body %}
+
+{% block right-body %}
+&nbsp;
+{% endblock right-body %}
