@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'khoa',
         'PASSWORD': 'daden',
-        'HOST': '192.168.1.195',
+        'HOST': '10.130.41.107',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'office',
         'PASSWORD': 'phongdaotao',
-        'HOST': '192.168.1.195',
+        'HOST': '10.130.41.107',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'department',
         'PASSWORD': 'khoa',
-        'HOST': '192.168.1.195',
+        'HOST': '10.130.41.107',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -117,7 +117,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'lecturer',
         'PASSWORD': 'giangvien',
-        'HOST': '192.168.1.195',
+        'HOST': '10.130.41.107',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -128,7 +128,7 @@ DATABASES = {
         'NAME': 'BKEL',
         'USER': 'student',
         'PASSWORD': 'sinhvien',
-        'HOST': '192.168.1.195',
+        'HOST': '10.130.41.107',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"

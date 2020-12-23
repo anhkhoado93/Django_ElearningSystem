@@ -31,21 +31,21 @@ def getCoursesOfDepartment(department):
 
 def getClassesOfCourse(semester, courseId):
     with connection.cursor() as cursor:
-        SQLcommand = f"SELECT ClassId FROM CLASS WHERE Semester = {semester} AND CourseId = {courseId}"
+        SQLcommand = f"SELECT ClassId FROM CLASS WHERE Semester = {semester} AND CourseId = '{courseId}'"
         cursor.execute(SQLcommand)
         result = [res[0] for res in cursor.fetchall()]
     return result
 
 def getStudentsOfClass(classId):
     with connection.cursor() as cursor:
-        SQLcommand = f"SELECT StudentId, StudentName FROM ATTENDS_CLASS AS A JOIN STUDENT AS S ON A.StudentId = S.StudentId AND A.ClassId = {classId}"
+        SQLcommand = f"SELECT S.StudentId, S.StudentName FROM ATTENDS_CLASS AS A JOIN STUDENT AS S ON A.StudentId = S.StudentId AND A.ClassId = '{classId}'"
         cursor.execute(SQLcommand)
         result = [{'StudentId': res[0], 'StudentName': res[1]} for res in cursor.fetchall()]
     return result
 
 def getLecturersOfClass(classId):
     with connection.cursor() as cursor:
-        SQLcommand = f"SELECT DISTINCT LecturerId, LecturerName FROM TEACHES AS T JOIN LECTURER AS L ON T.LecturerId = L.LecturerId AND T.ClassId = {classId}"
+        SQLcommand = f"SELECT DISTINCT L.LecturerId, L.LecturerName FROM TEACHES AS T JOIN LECTURER AS L ON T.LecturerId = L.LecturerId AND T.ClassId = '{classId}'"
         cursor.execute(SQLcommand)
         result = [{'LecturerId': res[0], 'LecturerName': res[1]} for res in cursor.fetchall()]
     return result

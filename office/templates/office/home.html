@@ -1,6 +1,6 @@
 {% extends 'office/officebase.html' %}
 {% load static %}
 {% block content-body %}
-<a href="#">Enroll Student</a>
-<a href="url 'office:departments'">View Course</a>
+<a href="{%url 'office:enroll'%}">Enroll Student</a>
+<a href="{%url 'office:department'%}">View Course</a>
 {% endblock content-body %}

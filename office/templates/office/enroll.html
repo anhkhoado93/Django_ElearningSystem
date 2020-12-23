@@ -1,0 +1,34 @@
+{% extends 'office/officebase.html' %}
+{% load static %}
+{% block content-body %}
+
+<div style="overflow-y: scroll;">
+<table class="table table-striped table-bordered" style="width:100%;">
+    <thead>
+        <th>Student Id</th>
+        <th>Course Id</th>
+        <th>Assign</th>
+    </thead>
+    <thome>
+        {% for i in list %}
+        <tr height="100px">
+            <td>{{i.StudentId}}</td>
+            <td>{{i.CourseId}}</td>
+            <td>
+                <form action="", method="POST">
+                    {% csrf_token %}
+                <select name="value"  onChange="form.submit();">
+                    <option disabled selected>  </option>
+                    {% for j in i.availableC %}
+                        <option value="{{i.StudentId}} {{j}}">{{j}}</option>
+                    {%endfor%}
+                </select>
+                </form>
+            </td>
+        </tr>
+
+        {%endfor%}
+    </thome>
+</table>
+</div>
+{% endblock content-body %}
