@@ -80,59 +80,8 @@ WSGI_APPLICATION = 'bkel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'khoa',
-        'PASSWORD': 'daden',
-        'HOST': '10.130.41.107',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    },
-    'office': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'office',
-        'PASSWORD': 'phongdaotao',
-        'HOST': '10.130.41.107',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    },
-    'department': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'department',
-        'PASSWORD': 'khoa',
-        'HOST': '10.130.41.107',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    },
-    'lecturer': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'lecturer',
-        'PASSWORD': 'giangvien',
-        'HOST': '10.130.41.107',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    },
-    'student': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BKEL',
-        'USER': 'student',
-        'PASSWORD': 'sinhvien',
-        'HOST': '10.130.41.107',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

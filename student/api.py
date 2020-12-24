@@ -46,6 +46,8 @@ def getTotalCredits(studentId, semester):
     with connection.cursor() as cursor:
         result = 0
         cursor.callproc('studentCountEnrolledCredits', [studentId, semester, result])
+        cursor.execute("SELECT @_studentCountEnrolledCredits_2")
+        result = cursor.fetchone()[0]
     return result
 
 def getTotalEnrolledCourses(studentId, semester):

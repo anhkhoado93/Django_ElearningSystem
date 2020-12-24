@@ -75,7 +75,7 @@ def manageClass(request):
 @user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
 def classDetails(request, classId):
     lecturerId = request.session['id']
-    semester = 191
+    semester = 201
     textbook = getTextbooksOfManagedClass(lecturerId, classId)
     studentList = getStudentsOfManagedClass(lecturerId, classId)
     noStudent = len(studentList)
