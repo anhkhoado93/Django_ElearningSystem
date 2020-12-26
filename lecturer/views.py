@@ -67,15 +67,17 @@ def aboutpage(request):
 @user_passes_test(test_func=is_lecturer,login_url= "/accounts/logout/",redirect_field_name=None) 
 def manageClass(request):
     lecturerId = request.session['id']
-    semester = 191
+    semester = 201
+    if request.method == 'POST':
+        re = request.POST.get('myselect')
+        semester = re
     classList = getManagedClasses(lecturerId, semester)
-    return render(request, "lecturer/class.html", {'classList': classList})
+    return render(request, "lecturer/class.html", {'classList': classList, 'semester': semester})
 
 @login_required
 @user_passes_test(test_func=is_lecturer,login_url= "/accounts/logout/",redirect_field_name=None)
 def classDetails(request, classId):
     lecturerId = request.session['id']
-    semester = 201
     textbook = getTextbooksOfManagedClass(lecturerId, classId)
     studentList = getStudentsOfManagedClass(lecturerId, classId)
     noStudent = len(studentList)

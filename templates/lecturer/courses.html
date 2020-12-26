@@ -1,6 +1,9 @@
-{% extends 'content-base.html' %}
+{% extends 'lecturer/lecturerbase.html' %}
 {% load static %}
 
+{% block lecturer_css %}
+<link rel="stylesheet" type="text/css" href="{%static 'lecturer/courses.css'%}">
+{% endblock lecturer_css %}
 {% block content-body %}
 <div class="h-100 w-100 container" style="margin-top: 50px;">
     <h2>Courses</h2>
@@ -9,11 +12,13 @@
     {% else %}
     <div class="row w-100 d-flex">
         {% for c in courseList %}
-            <div style="height: 200px;" class="col-4 justify-content-center align-items-center" >
-                <div class="w-75 h-75" style = "margin: 12.5%;">
+            <div style="height: 250px;" class="col-4 justify-content-center align-items-center" >
+                <div style = "width: 85%; height: 85%; margin: 12.5%;">
                     <a href="{% url 'lecturer:courses'%}/{{semester}}/{{c.CourseId}}" class="justify-content-center align-items-center">
-                        <div class="w-100" style='height: 70%;top: 0px; background-color: black;'></div>
-                        <div class="w-100" style='height: 30%;bottom: 0px; color: rgb(0, 0, 0); opacity: 0.6; padding: 0px 10px;  background-color: #00000054;'>
+                        <div class="w-100 imgholder">
+                            <img src="/static/images/{{c.CourseId}}.png" alt="Course">
+                        </div>
+                        <div class="w-100 textholder">
                             <p>{{c.CourseName}} <br/> {{c.CourseId}}</p>
                         </div>
                     </a>
@@ -32,7 +37,7 @@
 
 {% block right-body %}
 <div style="margin-top: 50px;">
-    <text><b>Current Semester:</b> {{semester}}</text>
+    <div><text><b>Semester:</b> {{semester}}</text></div>
     <text><b>Choose Semester:</b></text>
     <form action="" method="POST">
         {% csrf_token %}

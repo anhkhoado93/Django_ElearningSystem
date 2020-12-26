@@ -1,4 +1,4 @@
-{% extends 'content-base.html' %}
+{% extends 'lecturer/lecturerbase.html' %}
 {% load static %}
 
 {% block content-body %}
@@ -15,10 +15,10 @@
         {% endfor %}
     </ul>
     {% if not lockButton %}
-    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="False" aria-controls="collapseExample">
         Edit Textbook
     </a>
-    <div class="collapse show" id="collapseExample" style="margin-top: 5px">
+    <div class="collapse" id="collapseExample" style="margin-top: 5px">
         <div class="card card-body" style="margin-top: 5px;">
             <form action="" method="POST">
             {% csrf_token %}
@@ -35,7 +35,7 @@
                         <td>{{c.Isbn}}</td>
                         <td>
                             {% if c.Isbn in usedBookIsbn%}
-                                <button type="submit" name="input" value="{{c.Isbn}}">Unselect</button> 
+                                <button type="submit" name="input" value="{{c.Isbn}}">Unsubmit</button> 
                             {% else %}
                                 <button type="submit" name="input" value="{{c.Isbn}}">Submit</button> 
                             {%endif%}

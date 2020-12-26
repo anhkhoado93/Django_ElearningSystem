@@ -1,21 +1,9 @@
-{% extends 'content-base.html' %}
+{% extends 'lecturer/lecturerbase.html' %}
 {% load static %}
 
-{%block custom_css%} 
-<style>
-.custom-button-prop {
-    border: 5px solid black; 
-    margin: 10px; 
-    background-color: white;
-}
-.custom-link-prop {
-    color: black;
-    width:100%;
-    height: 100%;
-     position: relative;
-}
-</style>
-{%endblock custom_css%}
+{%block lecturer_css%} 
+<link rel="stylesheet" type="text/css" href="{% static 'lecturer/home.css' %}">
+{%endblock lecturer_css%}
 {% block content-body %}
 <div class='d-flex position-absolute h-100 w-100 justify-content-center align-items-center p-2'>
     <!-- <div class="floating-button" style="border: 5px solid black;margin: 10px; background-color: white;">
@@ -38,7 +26,7 @@
     </div>
     <div class="floating-button custom-button-prop">
         <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop'  href="{% url 'lecturer:about' %}" >
-            <img src="#" alt="ABOUT">
+            <img src="{% static 'images/about.png' %}" alt="ABOUT">
             ABOUT
         </a>
     </div>
