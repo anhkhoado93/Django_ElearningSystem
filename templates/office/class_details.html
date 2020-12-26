@@ -1,0 +1,34 @@
+{% extends 'content-base.html' %}
+{% load static %}
+{% block content-body %}
+<h2>Student List</h2>
+<table class="table table-striped table-bordered" style="width:100%;">
+    <thead>
+        <th>Student Name</th>
+        <th>Student Id</th>
+    </thead>
+    <tbody>
+        {% for c in student %}
+        <tr>
+            <td>{{c.StudentName}}</td>
+            <td>{{c.StudentId}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+<h2>Lecturer List</h2>
+<table class="table table-striped table-bordered" style="width:100%;">
+    <thead>
+        <th>Lecturer Name</th>
+        <th>Lecturer Id</th>
+    </thead>
+    <tbody>
+        {% for c in lecturer %}
+        <tr>
+            <td>{{c.LecturerName}}</td>
+            <td>{{c.LecturerId}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% endblock content-body %}

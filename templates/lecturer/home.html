@@ -1,0 +1,47 @@
+{% extends 'content-base.html' %}
+{% load static %}
+
+{%block custom_css%} 
+<style>
+.custom-button-prop {
+    border: 5px solid black; 
+    margin: 10px; 
+    background-color: white;
+}
+.custom-link-prop {
+    color: black;
+    width:100%;
+    height: 100%;
+     position: relative;
+}
+</style>
+{%endblock custom_css%}
+{% block content-body %}
+<div class='d-flex position-absolute h-100 w-100 justify-content-center align-items-center p-2'>
+    <!-- <div class="floating-button" style="border: 5px solid black;margin: 10px; background-color: white;">
+        <a class='d-flex justify-content-center align-items-center flex-column'  href="#" style="color: black; width:100%; height: 100%; position: relative;">
+            <img src="#" alt="ACCOUNT">
+            ACCOUNT
+        </a>
+    </div> -->
+    <div class="floating-button custom-button-prop">
+        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop' href="{% url 'lecturer:courses' %}">
+            <img src="{% static 'images/course.png' %}" alt="Avatar">
+            MANAGE COURSE
+        </a>
+    </div>
+    <div class="floating-button custom-button-prop">
+        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop'  href="{% url 'lecturer:class' %}">
+            <img src="{% static 'images/register.png' %}" alt="Avatar">
+            MANAGE CLASS
+        </a>
+    </div>
+    <div class="floating-button custom-button-prop">
+        <a class='d-flex justify-content-center align-items-center flex-column custom-link-prop'  href="{% url 'lecturer:about' %}" >
+            <img src="#" alt="ABOUT">
+            ABOUT
+        </a>
+    </div>
+
+</div>
+{% endblock content-body %}

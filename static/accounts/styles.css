@@ -1,0 +1,14 @@
+#login-canvas {
+    margin-top: 100px;
+}
+
+#avatar {
+    width: 70px; 
+    height: 70px;
+}
+
+#form {
+    width: 30%; 
+    height: 50%; 
+    padding-top: 20px;
+}

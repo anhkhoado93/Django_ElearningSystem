@@ -1,0 +1,29 @@
+{% extends 'content-base.html' %}
+{% load static %}
+
+{% block content-body %}
+<div style="margin-top: 50px;">
+    <text><b>Course ID:</b> {{info.CourseId}}</text>
+    <hr class="mt-2 mb-3"/>
+    <text><b>Class ID:</b> 
+        {% if info.ClassId %}
+            {{ info.ClassId.0 }}
+        {% else %}
+            You have not been assigned
+        {% endif %}
+    </text>
+    <hr class="mt-2 mb-3"/>
+    <text><b> Lecturer(s) Name: </b>
+        {%for l in info.Lecturers%}
+            {{l}}
+        {%endfor%}
+    </text>
+    <hr class="mt-2 mb-3"/>
+    <text><b>Textbook Names:</b>
+        {%for l in info.Textbooks%}
+            {{l}}
+        {%endfor%}
+    </text>
+
+</div>
+{% endblock content-body %}

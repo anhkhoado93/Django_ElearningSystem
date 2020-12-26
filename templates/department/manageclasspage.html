@@ -1,0 +1,31 @@
+{% extends 'content-base.html' %}
+{% load static %}
+{% block content-body %}
+<table class="table table-striped table-bordered" style="width:100%;">
+    <thead>
+        <th>Week</th>
+        <th>Lecturer</th>
+    </thead>
+    <tbody>
+        {% for c in lecturerByWeek %}
+        <tr>
+            <td>{{c.Week}}</td>
+            <td>{{c.LecturerName}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<div style="margin-top: 50px;">
+    <text><b>Add Lecturer</b></text>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <select name="value" onChange="form.submit();">
+            <option disabled selected></option>
+            {% for l in allLecturer%}
+                <option value="{{l.LecturerId}}">{{l.LecturerName}} - {{l.LecturerId}}</option>
+            {%endfor%}
+        </select>
+    </form>
+</div>
+{% endblock content-body %}

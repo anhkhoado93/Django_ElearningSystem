@@ -17,11 +17,10 @@ def is_department(user):
 @user_passes_test(test_func=is_department,login_url= "/accounts/login/",redirect_field_name=None)
 def managepage(request):
     depId = request.session['id']
-    allCourses = getCourses(depId)
     if 'semester' not in request.session:
         request.session['semester'] = 201
-    courses = getOpenedCourses(depId, semester)
-    return render(request, "department/managepage.html", {"allCourses": allCourses, "courses": courses})
+    allCourses = getCourses(depId, request.session['semester'])
+    return render(request, "department/managepage.html", {"allCourses": allCourses})
 
 @login_required
 @user_passes_test(test_func=is_department,login_url= "/accounts/login/",redirect_field_name=None)
@@ -30,14 +29,14 @@ def managecoursepage(request, courseId):
     if 'semester' not in request.session:
         request.session['semester'] = 201
     if request.method == "POST":
-        re = request.method.get("value")
+        re = request.POST.get("value")
         re = re.split(' ')
         if re[0] == 'add':
             openClass(depId, request.session['semester'], courseId)
         elif re[0] == 'remove':
             closeClass(depId, request.session['semester'], courseId, re[1])
     classes = getClassesOfCourse(depId, request.session['semester'], courseId)
-    return render(request, "department/managecoursepage.html", {"classes": classes})
+    return render(request, "department/managecoursepage.html", {"courseId": courseId,"classes": classes})
 
 @login_required
 @user_passes_test(test_func=is_department,login_url= "/accounts/login/",redirect_field_name=None)
@@ -46,6 +45,10 @@ def manageclasspage(request, courseId, classId):
     if 'semester' not in request.session:
         request.session['semester'] = 201
     if request.method == "POST":
-        pass
-    lecturerByWeek = getClassesOfCourse(depId, request.session['semester'], courseId)
-    return render(request, "department/managecoursepage.html", {"classes": classes,})
+        re = request.POST.get("value")
+        assignLecturerToClass(depId,classId,re)
+    lecturerByWeek = getLecturersPerWeek(depId, request.session['semester'], classId)
+    print(depId, courseId)
+    print(lecturerByWeek)
+    allLecturer = getWorkingLecturers(depId, request.session['semester'])
+    return render(request, "department/manageclasspage.html", {"lecturerByWeek": lecturerByWeek, 'allLecturer': allLecturer})

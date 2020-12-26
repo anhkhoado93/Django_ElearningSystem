@@ -1,0 +1,31 @@
+{% extends 'content-base.html' %}
+{% load static %}
+
+{% block content-body %}
+<div class="h-100 w-100 container" style="margin-top: 50px;">
+    <h2>Class</h2>
+    {% if classList is None %}
+            <text>No course to display.</text>
+    {% else %}
+    <div class="row w-100 d-flex">
+        {% for c in classList %}
+            <div style="height: 200px;" class="col-4 justify-content-center align-items-center" >
+                <div class="w-75 h-75" style = "margin: 12.5%;">
+                    <a href="{% url 'lecturer:class'%}/{{c}}" class="justify-content-center align-items-center">
+                        <div class="w-100" style='height: 70%;top: 0px; background-color: black;'></div>
+                        <div class="w-100" style='height: 30%;bottom: 0px; color: rgb(0, 0, 0); opacity: 0.6; padding: 0px 10px;  background-color: #00000054;'>
+                            <p>{{c}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {%endif%}
+    <!-- <h2>Other Info</h2>
+    <div class="row">
+        ...
+    </div> -->
+</div>
+
+{% endblock content-body %}

@@ -1,0 +1,22 @@
+{% extends 'content-base.html' %}
+{% load static %}
+{% block content-body %}
+<table class="table table-striped table-bordered" style="width:100%;">
+    <thead>
+        <th>Course Id</th>
+        <th>Course Name</th>
+        <tH>Visit</tH>
+    </thead>
+    <tbody>
+        {% for c in allCourses %}
+        <tr>
+            <td>{{c.CourseId}}</td>
+            <td>{{c.CourseName}}</td>
+            <td>
+                <a href="{% url 'department:managecourses' courseId=c.CourseId %}">Visit</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% endblock content-body %}

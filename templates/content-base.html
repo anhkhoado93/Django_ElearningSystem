@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<div class="position-absolute h-100" style="width: 15%; left: 0px;">
+    {% block left-body %}
+    {% endblock left-body %}
+</div>
+<div class="position-absolute w-75 h-100" style="margin-left: 15%;">
+    {% block content-body %}
+    {% endblock content-body %}
+</div>
+<div class="position-absolute h-100" style="width: 10%; right: 0px;">
+    {% block right-body %}
+    {% endblock right-body %}
+</div>
+{% endblock body %}
