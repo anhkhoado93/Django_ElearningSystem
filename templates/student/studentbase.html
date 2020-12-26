@@ -1,0 +1,18 @@
+{% extends 'contentbase.html' %}
+{% load static %}
+
+{%block custom_css%}
+<link rel="stylesheet" type="text/css" href="{% static 'student/styles.css' %}">
+{%block student_css%} {%endblock student_css%}
+{%endblock custom_css%}
+{% block left-body %}
+<div class="sidenav" style="margin-top: 60px;">
+    <a href="{%url 'student:home'%}">Home</a>
+    <a href="{%url 'student:courses'%}">Courses</a>
+    <a href="{%url 'student:register'%}">Register</a>
+    <a href="{%url 'student:about'%}">About</a>
+</div>
+{% endblock left-body %}
+{% block content-body %}
+&nbsp;
+{% endblock content-body %}

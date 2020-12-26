@@ -2,73 +2,28 @@
 {% load static %}
 
 {%block custom_css%} 
-<style>
-.box_content {
-    color: black; 
-    width:100%; 
-    height: 100%; 
-    position: relative;
-    -o-animation: fadein 1s;
-    animation: fadein 1s;
-}
-
-.fadeText {
-    -o-animation: fadein 1s;
-    animation: fadein 1s;
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
 {%endblock custom_css%}
 
 {% block body %}
         <!-- Prop to student or teacher-->
-        <div class="d-flex canvas align-items-center justify-content-center flex-column" style="background-color:#0088D6;">
-        <div class="animated fadeIn fadeText" style="text-align: center;">
-            <h2>You are a</h2>
+        <div class="d-flex canvas align-items-center justify-content-center flex-column" style="background-color:#1F5075;">
+        <div class="animated fadeIn fadeText">
+            <h1>You are a</h1>
         </div>
-        
-            <!-- <div class="floating-button" style="margin: 20px; background-color: white;">
-                <a class='d-flex justify-content-center align-items-center flex-column box_content' href="{% url 'student:home' %}">
-                    <img src="{% static 'images/student.jpeg' %}" alt="Avatar">
-                    <b>STUDENT</b>
-                </a>
-            </div>
-            <div class="floating-button" style="margin: 20px; background-color: white;">
-                <a class='d-flex justify-content-center align-items-center flex-column box_content'  href="{% url 'lecturer:home' %}">
-                    <img src="{% static 'images/teachers.png' %}" alt="Avatar">
-                    <b>TEACHER</b>
-                </a>
-            </div>
-            <div class="floating-button" style="margin: 20px; background-color: white;">
-                <a class='d-flex justify-content-center align-items-center flex-column box_content' href="{% url 'office:home' %}">
-                    <img src="#" alt="Avatar">
-                    <b>OFFICE</b>
-                </a>
-            </div>
-            <div class="floating-button" style="margin: 20px; background-color: white;">
-                <a class='d-flex justify-content-center align-items-center flex-column box_content'  href="{% url 'department:manage' %}">
-                    <img src="#" alt="Avatar">
-                    <b>DEPARTMENT</b>
-                </a>
-            </div>
-             -->
              <div id="carouselExampleControls" class="carousel slide w-75" data-ride="carousel" >
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <div class='d-flex justify-content-center align-items-center p-2'>
                     <div class="floating-button" style="margin: 20px; background-color: white;">
                         <a class='d-flex justify-content-center align-items-center flex-column box_content' href="{% url 'student:home' %}">
-                            <img src="{% static 'images/student.jpeg' %}" alt="Avatar">
+                            <img src="{% static 'images/student.jpeg' %}" alt="Student">
                             <b>STUDENT</b>
                         </a>
                     </div>
                     <div class="floating-button" style="margin: 20px; background-color: white;">
                         <a class='d-flex justify-content-center align-items-center flex-column box_content'  href="{% url 'lecturer:home' %}">
-                            <img src="{% static 'images/teachers.png' %}" alt="Avatar">
+                            <img src="{% static 'images/teachers.png' %}" alt="Lecturer">
                             <b>TEACHER</b>
                         </a>
                     </div>
@@ -77,15 +32,15 @@
                   <div class="carousel-item">
                     <div class='d-flex justify-content-center align-items-center p-2'>
                     <div class="floating-button" style="margin: 20px; background-color: white;">
-                        <a class='d-flex justify-content-center align-items-center flex-column box_content' href="{% url 'office:home' %}">
-                            <img src="#" alt="Avatar">
-                            <b>OFFICE</b>
+                        <a class='d-flex justify-content-center align-items-center flex-column box_content'  href="{% url 'department:manage' %}">
+                            <img src="{% static 'images/department.png' %}" alt="Department">
+                            <b>DEPARTMENT</b>
                         </a>
                     </div>
                     <div class="floating-button" style="margin: 20px; background-color: white;">
-                        <a class='d-flex justify-content-center align-items-center flex-column box_content'  href="{% url 'department:manage' %}">
-                            <img src="#" alt="Avatar">
-                            <b>DEPARTMENT</b>
+                        <a class='d-flex justify-content-center align-items-center flex-column box_content' href="{% url 'office:home' %}">
+                            <img src="{% static 'images/office.png' %}" alt="Office">
+                            <b>OFFICE</b>
                         </a>
                     </div>
                 </div>
