@@ -14,7 +14,7 @@ def is_department(user):
     return user.user_type == DEPARTMENT
 
 @login_required
-@user_passes_test(test_func=is_department,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_department,login_url= "/accounts/logout/",redirect_field_name=None)
 def managepage(request):
     depId = request.session['id']
     if 'semester' not in request.session:
@@ -23,7 +23,7 @@ def managepage(request):
     return render(request, "department/managepage.html", {"allCourses": allCourses})
 
 @login_required
-@user_passes_test(test_func=is_department,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_department,login_url= "/accounts/logout/",redirect_field_name=None)
 def managecoursepage(request, courseId):
     depId = request.session['id']
     if 'semester' not in request.session:
@@ -39,7 +39,7 @@ def managecoursepage(request, courseId):
     return render(request, "department/managecoursepage.html", {"courseId": courseId,"classes": classes})
 
 @login_required
-@user_passes_test(test_func=is_department,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_department,login_url= "/accounts/logout/",redirect_field_name=None)
 def manageclasspage(request, courseId, classId):
     depId = request.session['id']
     if 'semester' not in request.session:

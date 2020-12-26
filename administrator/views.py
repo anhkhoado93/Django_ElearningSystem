@@ -17,7 +17,7 @@ def is_admin(user):
     
 # # @cache_control(no_cache=True, must_revalidate=True, no_store=True) # to prevent user back button after logging out
 # @login_required
-# @user_passes_test(test_func=is_admin,login_url= "/accounts/login/",redirect_field_name=None)
+# @user_passes_test(test_func=is_admin,login_url= "/accounts/logout/",redirect_field_name=None)
 def signup_user(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)

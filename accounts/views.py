@@ -20,7 +20,6 @@ def login_user(request):
             redirect_url = request.GET.get('next', 'home')
             return redirect(redirect_url)
         except Exception as e:
-            print(e)
             messages.error(request, "Username or Password is incorrect!!",
                     extra_tags='alert alert-warning alert-dismissible fade show')
             return HttpResponse("""<text>Username or Password is incorrect!!</text> <a href="/">Return To Home Page</a>""")
