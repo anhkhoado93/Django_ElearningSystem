@@ -5,7 +5,8 @@ app_name = "office"
 urlpatterns = [
     path("home", views.homepage, name="home"),
     path("deps", views.deppage, name="department"),
-    path("deps/<depsId>", views.viewpage, name="view"),
-    path("deps/<deps>/<courseId>", views.coursepage, name="courses"),
-    path("deps/<deps>/<courseId>/<classId>", views.classpage, name="class")
+    path("deps/<int:depsId>", views.coursepage, name="courses"),
+    path("deps/<str:depsId>/<str:courseId>", views.classpage, name="class"),
+    path("deps/<str:depsId>/<str:courseId>/<str:classId>", views.classinfopage, name="classinfopage"),
+    path("enroll",views.enroll, name="enroll")
 ]

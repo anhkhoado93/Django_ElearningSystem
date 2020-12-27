@@ -15,31 +15,37 @@ def is_office(user):
     return user.user_type == OFFICE
     
 # @cache_control(no_cache=True, must_revalidate=True, no_store=True) # to prevent user back button after logging out
-@login_required
-@user_passes_test(test_func=is_office,login_url= "/accounts/login/",redirect_field_name=None)
 def homepage(request):
+    request.session['semester'] = 201
     return render(request, "office/home.html")
 
-@login_required
-@user_passes_test(test_func=is_office,login_url= "/accounts/login/",redirect_field_name=None)
 def deppage(request):
     dep = getDepartments()
     return render(request, "office/deps.html", {'departments': dep})
 
-@login_required
-@user_passes_test(test_func=is_office,login_url= "/accounts/login/",redirect_field_name=None)
-def viewpage(request, dep):
-    courses = getCoursesOfDepartment(dep)
-    return render(request, "office/view.html", {'departments': dep, 'courses': courses})
+def coursepage(request, depsId):
+    courses = getCoursesOfDepartment(depsId)
+    return render(request, "office/courses.html", {'departments': depsId, 'courses': courses})
 
-@login_required
-@user_passes_test(test_func=is_office,login_url= "/accounts/login/",redirect_field_name=None)
-def coursepage(request, courseId):
-    semester = 201
-    classList = getClassesOfCourse(semester, courseId)
-    return render(request, "office/course.html", {'departments': dep, 'courses': courses, 'classList': classList})
+def classpage(request, depsId, courseId):
+    classes = getClassesOfCourse(request.session['semester'], courseId)
+    print(classes)
+    return render(request, "office/class.html", {'departments': depsId, 'courseId': courseId, 'classes': classes})
 
-@login_required
-@user_passes_test(test_func=is_office,login_url= "/accounts/login/",redirect_field_name=None)
-def classpage(request, courseId, classId):
-    return render(request, "office/class.html", {'courseId': courseId, 'classId': classId})
+def classinfopage(request, depsId, courseId, classId):
+    studentList = getStudentsOfClass(classId)
+    print(studentList)
+    lecturerList = getLecturersOfClass(classId)
+    return render(request, "office/class_details.html", {'student':studentList, 'lecturer': lecturerList})
+
+def enroll(request):
+    if request.method == 'POST':
+        re = request.POST.get('value')
+        re = re.split(' ')
+        assignEnrollment(re[0], re[1])
+    lst = list(map(lambda x: {
+        'StudentId': x['StudentId'],
+        'CourseId': x['CourseId'] ,
+        'availableC': getClassesOfCourse(request.session['semester'], x['CourseId'])} ,getUnassignedEnrollment(request.session['semester'])))
+
+    return render(request, "office/enroll.html", {'list': lst })

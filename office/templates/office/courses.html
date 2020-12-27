@@ -7,12 +7,12 @@
         <th>Course Name</th>
     </thead>
     <tbody>
-        {% for c in class %}
+        {% for c in courses %}
         <tr>
             <td>{{c.CourseId}}</td>
             <td>{{c.CourseName}}</td>
             <td>
-                <a href="{% url 'office:courses'%}/{{c.CourseId}}"></a>
+                <a href="{% url 'office:class' depsId=departments courseId=c.CourseId %}"> Link</a>
             </td>
         </tr>
         {%endfor%}

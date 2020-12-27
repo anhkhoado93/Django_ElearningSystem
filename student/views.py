@@ -18,6 +18,7 @@ def is_student(user):
 @login_required
 @user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)
 def homepage(request):
+    request.session["semester"] = 201
     return render(request, "student/home.html")
 
 @login_required
