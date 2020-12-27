@@ -36,7 +36,7 @@ def getClassesOfManagedCourse(lecturerId, semester, courseId):
 def getManagedClasses(lecturerId, semester):
     with connection.cursor() as cursor:
         cursor.callproc('lecturerGetManagedClasses', [lecturerId, semester])
-        result = [res[0] for res in cursor.fetchall()]
+        result = [{'Week': res[0], 'ClassId': res[1]} for res in cursor.fetchall()]
     return result
 
 def getStudentsOfManagedClass(lecturerId, classId):
