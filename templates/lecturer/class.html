@@ -11,13 +11,15 @@
         {% csrf_token %}
         <table class="table table-striped table-bordered" style="width:80%; margin-left: 10%;">
             <thead class="thead-dark">
+                <th class="text-center">Week</th>
                 <th class="text-center">class ID</th>
                 <th class="text-center">Details</th>
             </thead>
             <tbody>
                 {% for c in classList %}
                     <tr>
-                        <td class="text-center"> {{c}} </td>
+                        <td class="text-center">{{c.Week}}</td>
+                        <td class="text-center"> {{c.ClassId}} </td>
                         <td class="text-center"> <a href="{% url 'lecturer:class'%}/{{c}}">Details</a> </td>
                     </tr>
                 {% endfor %}

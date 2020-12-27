@@ -72,6 +72,7 @@ def manageClass(request):
         re = request.POST.get('myselect')
         semester = re
     classList = getManagedClasses(lecturerId, semester)
+    print(classList)
     return render(request, "lecturer/class.html", {'classList': classList, 'semester': semester})
 
 @login_required
