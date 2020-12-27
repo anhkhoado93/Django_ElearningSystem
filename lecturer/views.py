@@ -14,12 +14,12 @@ def is_lecturer(user):
     return user.user_type == LECTURER
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/logout/",redirect_field_name=None)
 def homepage(request):
     return render(request, "lecturer/home.html")
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/logout/",redirect_field_name=None)
 def manageCourse(request):
     lecturerId = request.session['id']
     semester = 201
@@ -30,7 +30,7 @@ def manageCourse(request):
     return render(request, "lecturer/courses.html", { 'courseList': result_list, 'semester': semester })
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/logout/",redirect_field_name=None)
 def manageCourseDetails(request, semester, courseId):
     lecturerId = request.session['id']
     textbook = getTextbooksOfManagedCourse(lecturerId, semester, courseId) # List(Dict(isbn, name))
@@ -59,23 +59,25 @@ def manageCourseDetails(request, semester, courseId):
     return render(request, "lecturer/course_details.html", { 'courseid': courseId, 'usedBookIsbn': usedBookIsbn, 'textbook': textbook, 'allBook': allTextbook, 'class': classes , 'lockButton': semester != '201'})
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/logout/",redirect_field_name=None)
 def aboutpage(request):
     return render(request, "lecturer/about.html")
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None) 
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/logout/",redirect_field_name=None) 
 def manageClass(request):
     lecturerId = request.session['id']
-    semester = 191
+    semester = 201
+    if request.method == 'POST':
+        re = request.POST.get('myselect')
+        semester = re
     classList = getManagedClasses(lecturerId, semester)
-    return render(request, "lecturer/class.html", {'classList': classList})
+    return render(request, "lecturer/class.html", {'classList': classList, 'semester': semester})
 
 @login_required
-@user_passes_test(test_func=is_lecturer,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_lecturer,login_url= "/accounts/logout/",redirect_field_name=None)
 def classDetails(request, classId):
     lecturerId = request.session['id']
-    semester = 191
     textbook = getTextbooksOfManagedClass(lecturerId, classId)
     studentList = getStudentsOfManagedClass(lecturerId, classId)
     noStudent = len(studentList)

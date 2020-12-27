@@ -1,0 +1,13 @@
+{% extends 'office/officebase.html' %}
+{% load static %}
+{% block content-body %}
+<div style="margin-top: 50px;">
+    <div>
+        <h3>Task</h3>
+    </div>
+    <ul>
+        <li><a href="{%url 'office:department'%}">View Department</a></li>
+        <li><a href="{%url 'office:enroll'%}">Enroll Student</a></li>
+    </ul>
+</div>
+{% endblock content-body %}

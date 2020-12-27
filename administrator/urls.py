@@ -4,4 +4,5 @@ from . import views
 app_name = "administrator"
 urlpatterns = [
     # TODO: Add urls here
+    path("", views.signup_user, name="createUser")
 ]

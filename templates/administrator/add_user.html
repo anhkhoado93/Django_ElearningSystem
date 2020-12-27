@@ -1,0 +1,12 @@
+{% extends 'content-base.html' %}
+
+{% block content-body %}
+<div style="margin-top: 100px; width: 80%; margin-left: 5%;">
+    <form action="{% url 'administrator:createUser' %}" method="post">
+        {% csrf_token %}
+        <div>{{ form }}</div>
+        
+        <div><input type="submit"  class="btn btn-primary" style="margin-top: 50px;"></div>
+    </form>
+</div>
+{% endblock content-body %}
