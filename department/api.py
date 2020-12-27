@@ -25,7 +25,6 @@ def getLecturersPerWeek(departmentId, semester, classId):
     with connection.cursor() as cursor:
         cursor.callproc('departmentGetLecturersOfClass', [departmentId, semester, classId])
         result = [{'Week': res[0], 'LecturerId': res[1], 'LecturerName': res[2]} for res in cursor.fetchall()]
-        print("hello", result)
     return result
 
 def getOpenedCourses(departmentId, semester):
