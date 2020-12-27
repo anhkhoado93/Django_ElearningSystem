@@ -1,0 +1,53 @@
+{% extends 'student/studentbase.html' %}
+{% load static %}
+
+{% block student_css %}
+<link rel="stylesheet" type="text/css" href="{%static 'student/courses.css'%}">
+{% endblock student_css %}
+{% block content-body %}
+<div class="h-100 w-100 container" style="margin-top: 50px;">
+    <h2>Courses</h2>
+    {% if courseList is None %}
+            <text>No course to display.</text>
+    {% else %}
+    <div class="row w-100 d-flex">
+        {% for c in courseList %}
+            <div style="height: 250px;" class="col-4 justify-content-center align-items-center">
+                <div style = "width: 85%; height: 85%;margin: 7.5%;">
+                    <a href="{% url 'student:courses'%}/{{c.CourseId}}" class="justify-content-center align-items-center">
+                        <div class="w-100 imgholder">
+                            <img src= "/static/images/{{c.CourseId}}.png" alt="Course">
+                        </div>
+                        <div class="w-100 textholder">
+                            <p><strong>{{c.CourseName}}</strong> <br/> {{c.CourseId}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {%endif%}
+    <!-- <h2>Other Info</h2>
+    <div class="row">
+        ...
+    </div> -->
+</div>
+
+{% endblock content-body %}
+
+{% block right-body %}
+<div style="margin-top: 50px;">
+    <div><text><b>Semester:</b> {{semester}}</text></div>
+    <text><b>Choose Semester:</b></text>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <select name="myselect" id="myselect" onChange="form.submit();">
+            <option disabled selected></option>
+            <option value="201">201</option>
+            <option value="192">192</option>
+            <option value="191">191</option>
+            <option value="182">182</option>
+        </select>
+    </form>
+</div>
+{% endblock right-body %}

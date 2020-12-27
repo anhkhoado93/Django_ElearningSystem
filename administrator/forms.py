@@ -15,14 +15,11 @@ class UserRegistrationForm(forms.Form):
         decimal_places=0,
         widget=forms.NumberInput(attrs={'class': 'form-control'})
     )
-    usertype = forms.ChoiceField(
-        choices=User.USER_TYPE_CHOICES
-    )
-    name = email = forms.EmailField(
+    name = forms.CharField(
         label='Full name', 
         max_length=100, 
         min_length=5,
-        widget=forms.EmailInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     email = forms.EmailField(
         label='Email', 
@@ -35,5 +32,8 @@ class UserRegistrationForm(forms.Form):
         max_length=50, 
         min_length=5,
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    usertype = forms.ChoiceField(
+        choices=User.USER_TYPE_CHOICES
     )
     

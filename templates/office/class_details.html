@@ -1,0 +1,36 @@
+{% extends 'office/officebase.html' %}
+{% load static %}
+{% block content-body %}
+<div style="margin-top: 20px;">
+<h2>Lecturer List</h2>
+<table class="table table-striped table-bordered" style="width:100%;">
+    <thead>
+        <th class="text-center">Lecturer Name</th>
+        <th class="text-center">Lecturer Id</th>
+    </thead>
+    <tbody>
+        {% for c in lecturer %}
+        <tr>
+            <td class="text-center">{{c.LecturerName}}</td>
+            <td class="text-center"> {{c.LecturerId}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+<h2>Student List</h2>
+<table class="table table-striped table-bordered" style="width:100%;">
+    <thead>
+        <th class="text-center">Student Name</th>
+        <th class="text-center">Student Id</th>
+    </thead>
+    <tbody>
+        {% for c in student %}
+        <tr>
+            <td class="text-center">{{c.StudentName}}</td>
+            <td class="text-center">{{c.StudentId}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+</div>
+{% endblock content-body %}

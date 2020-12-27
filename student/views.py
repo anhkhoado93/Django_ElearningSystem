@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db import connection
 from django.http import HttpResponseRedirect
 from .api import *
-from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 
 OFFICE = 1
@@ -16,13 +15,13 @@ def is_student(user):
     
 # @cache_control(no_cache=True, must_revalidate=True, no_store=True) # to prevent user back button after logging out
 @login_required
-@user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_student,login_url= "/accounts/logout/",redirect_field_name=None)
 def homepage(request):
     request.session["semester"] = 201
     return render(request, "student/home.html")
 
 @login_required
-@user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_student,login_url= "/accounts/logout/",redirect_field_name=None)
 def coursepage(request):
     studentId = request.session['id']
     semester = 201
@@ -33,12 +32,12 @@ def coursepage(request):
     return render(request, "student/courses.html", { 'courseList': result_list, 'semester': semester })
 
 @login_required
-@user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_student,login_url= "/accounts/logout/",redirect_field_name=None)
 def aboutpage(request):
     return render(request, "student/about.html")
 
 @login_required
-@user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_student,login_url= "/accounts/logout/",redirect_field_name=None)
 def register(request):
     studentId = request.session['id']
     request.session["semester"] = 201
@@ -60,7 +59,7 @@ def register(request):
     {'openCourse': openCourseList, 'submittedCourse': submittedCourse, 'totalCredit': totalCredit  })
 
 @login_required
-@user_passes_test(test_func=is_student,login_url= "/accounts/login/",redirect_field_name=None)
+@user_passes_test(test_func=is_student,login_url= "/accounts/logout/",redirect_field_name=None)
 def course_details(request, courseId):
     studentId = request.session['id']
     result_list = getEnrolledCourseInfo(studentId, courseId, request.session['semester'])   

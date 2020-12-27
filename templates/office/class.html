@@ -1,0 +1,23 @@
+{% extends 'office/officebase.html' %}
+{% load static %}
+{% block content-body %}
+<div style="margin-top: 50px;">
+    <div><h2>Classes</h2></div>
+<table class="table table-striped table-bordered" style="width:100%; margin-top: 20px;">
+    <thead>
+        <th class="text-center">Class Name</th>
+        <th class="text-center">Visit</th>
+    </thead>
+    <tbody>
+        {% for c in classes %}
+        <tr>
+            <td class="text-center">{{c}}</td>
+            <td class="text-center">
+                <a href="{% url 'office:classinfopage' depsId=departments courseId=courseId classId=c %}">Link</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+</div>
+{% endblock content-body %}

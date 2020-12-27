@@ -1,0 +1,11 @@
+.custom-button-prop {
+    border: 1px solid black; 
+    margin: 20px; 
+    background-color: white;
+}
+.custom-button-prop a {
+    color: black;
+    width:100%;
+    height: 100%;
+     position: relative;
+}

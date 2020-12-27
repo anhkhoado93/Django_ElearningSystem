@@ -3,5 +3,7 @@ from . import views
 
 app_name = "department"
 urlpatterns = [
-    # TODO: Add urls here
+    path("manage", views.managepage, name="manage"),
+    path("manage/<str:courseId>", views.managecoursepage, name="managecourses"),
+    path("manage/<str:courseId>/<str:classId>", views.manageclasspage, name="manageclass"),
 ]

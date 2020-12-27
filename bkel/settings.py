@@ -83,7 +83,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'BKEL',
         'USER': 'root',
+<<<<<<< HEAD
         'PASSWORD': 'root',
+=======
+        'PASSWORD': 'daden',
+>>>>>>> khoado
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
