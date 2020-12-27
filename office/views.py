@@ -36,14 +36,12 @@ def coursepage(request, depsId):
 
 def classpage(request, depsId, courseId):
     classes = getClassesOfCourse(request.session['semester'], courseId)
-    print(classes)
     return render(request, "office/class.html", {'departments': depsId, 'courseId': courseId, 'classes': classes})
 
 @login_required
 @user_passes_test(test_func=is_office,login_url= "/accounts/logout/",redirect_field_name=None)
 def classinfopage(request, depsId, courseId, classId):
     studentList = getStudentsOfClass(classId)
-    print(studentList)
     lecturerList = getLecturersOfClass(classId)
     return render(request, "office/class_details.html", {'student':studentList, 'lecturer': lecturerList})
 

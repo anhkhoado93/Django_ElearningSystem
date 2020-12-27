@@ -1,6 +1,6 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-light" 
-style="background-color: #F4F7F6; border-bottom: 1px solid black;">
+style="background-color: #F4F7F6; border-bottom: 1px solid black; z-index: 10;">
     <a class="navbar-brand" href="{% url 'home' %}">
         <img src="{% static 'images/bkel.png' %}" width="35" height="35" class="d-inline-block align-top" alt="">
         Hưng Khoa E-Learning System
@@ -9,17 +9,17 @@ style="background-color: #F4F7F6; border-bottom: 1px solid black;">
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
         <li  class="nav-item">
             <a class="nav-link p-2" href="https://github.com/anhkhoado93/dbs_asm" target="_blank" rel="noopener" aria-label="Account">
-                <img src="{% static 'images/github.png' %}" width="20" height="20" class="d-inline-block align-top" alt="">
+                <i class="fab fa-github"></i>
             </a>
         </li>
         <li  class="nav-item">
             <a class="nav-link p-2" href="#" rel="noopener" aria-label="Account">
-                <img src="{% static 'images/accounticon.png' %}" width="20" height="20" class="d-inline-block align-top" alt="">
+                <i class="fas fa-user-circle"></i>
             </a>
         </li>
         <li  class="nav-item">
             <a class="nav-link p-2" href="{% url 'accounts:logout' %}" rel="noopener" aria-label="Logout">
-                <img src="{% static 'images/logouticon.png' %}" width="20" height="20" class="d-inline-block align-top" alt="">
+                <i class="fas fa-sign-out-alt"></i>
             </a>
         </li>
     </ul>

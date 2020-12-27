@@ -3,14 +3,13 @@
 
 {%block custom_css%}
 <link rel="stylesheet" type="text/css" href="{% static 'lecturer/styles.css' %}">
-{%block lecturer_css%} {%endblock lecturer_css%}
+{%block office_css%} {%endblock office_css%}
 {%endblock custom_css%}
 {% block left-body %}
 <div class="sidenav" >
-    <a href="{%url 'lecturer:home'%}" style="margin-top: 50px;">Home</a>
-    <a href="{%url 'lecturer:courses'%}">Course</a>
-    <a href="{%url 'lecturer:class'%}">Class</a>
-    <a href="{%url 'lecturer:about'%}">About</a>
+    <a href="{%url 'office:home'%}" style="margin-top: 50px;">Home</a>
+    <a href="{%url 'office:department'%}">Departments</a>
+    <a href="{%url 'office:enroll'%}">Enroll</a>
 </div>
 {% endblock left-body %}
 {% block content-body %}

@@ -48,7 +48,5 @@ def manageclasspage(request, courseId, classId):
         re = request.POST.get("value")
         assignLecturerToClass(depId,classId,re)
     lecturerByWeek = getLecturersPerWeek(depId, request.session['semester'], classId)
-    print(depId, courseId)
-    print(lecturerByWeek)
     allLecturer = getWorkingLecturers(depId, request.session['semester'])
     return render(request, "department/manageclasspage.html", {"lecturerByWeek": lecturerByWeek, 'allLecturer': allLecturer})

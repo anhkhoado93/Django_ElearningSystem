@@ -1,7 +1,7 @@
-{% extends 'content-base.html' %}
+{% extends 'department/departmentbase.html' %}
 {% load static %}
 {% block content-body %}
-<table class="table table-striped table-bordered" style="width:100%;">
+<table class="table table-striped table-bordered" style=" margin-top: 20px;width:100%;">
     <thead>
         <th>Week</th>
         <th>Lecturer</th>
@@ -16,16 +16,17 @@
     </tbody>
 </table>
 
-<div style="margin-top: 50px;">
+<div style="margin-top: 10px;">
     <text><b>Add Lecturer</b></text>
     <form action="" method="POST">
         {% csrf_token %}
-        <select name="value" onChange="form.submit();">
+        <select name="value">
             <option disabled selected></option>
             {% for l in allLecturer%}
                 <option value="{{l.LecturerId}}">{{l.LecturerName}} - {{l.LecturerId}}</option>
             {%endfor%}
         </select>
+        <button class="btn btn-primary" type="submit">Add</button>
     </form>
 </div>
 {% endblock content-body %}
