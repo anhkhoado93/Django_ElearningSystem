@@ -1,0 +1,25 @@
+USE BKEL;
+
+CREATE TABLE IF NOT EXISTS ATTENDS_CLASS (
+    Id INTEGER NOT NULL AUTO_INCREMENT,
+    ClassId VARCHAR(255) NOT NULL,
+    StudentId DECIMAL(7,0) NOT NULL,
+    Result FLOAT(1) CHECK ((Result >= 0 AND Result <= 10) OR Result IS NULL),
+    UNIQUE (ClassId, StudentId),
+    PRIMARY KEY (Id),
+    FOREIGN KEY (ClassId) 
+        REFERENCES CLASS(ClassId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    FOREIGN KEY (StudentId) 
+        REFERENCES STUDENT(StudentId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+LOAD DATA INFILE '/mnt/DAE242A5E242862B/Code/db/Excel/attends_class.csv' 
+INTO TABLE ATTENDS_CLASS
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (ClassId, StudentId, Result);

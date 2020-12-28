@@ -1,0 +1,25 @@
+USE BKEL;
+
+CREATE TABLE IF NOT EXISTS MANAGES_COURSE (
+    Id INTEGER NOT NULL AUTO_INCREMENT,
+    Semester INTEGER NOT NULL,
+    CourseId CHAR(6) NOT NULL,
+    LecturerId DECIMAL(7,0) NOT NULL,
+    UNIQUE (Semester, CourseId),
+    PRIMARY KEY (Id),
+    FOREIGN KEY (CourseId) 
+        REFERENCES COURSE(CourseId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    FOREIGN KEY (LecturerId) 
+        REFERENCES LECTURER(LecturerId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+LOAD DATA INFILE '/mnt/DAE242A5E242862B/Code/db/Excel/manages_course.csv' 
+INTO TABLE MANAGES_COURSE
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (Semester, CourseId, LecturerId);

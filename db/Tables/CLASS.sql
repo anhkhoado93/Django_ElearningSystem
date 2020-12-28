@@ -1,0 +1,19 @@
+USE BKEL;
+
+CREATE TABLE IF NOT EXISTS CLASS (
+    Semester INTEGER NOT NULL,
+    ClassId VARCHAR(255) NOT NULL,
+    CourseId CHAR(6) NOT NULL,
+    PRIMARY KEY (ClassId),
+    FOREIGN KEY (CourseId) 
+        REFERENCES COURSE(CourseId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+LOAD DATA INFILE '/mnt/DAE242A5E242862B/Code/db/Excel/class.csv' 
+INTO TABLE CLASS
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (Semester, ClassId, CourseId);

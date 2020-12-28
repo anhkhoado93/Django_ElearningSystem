@@ -1,0 +1,14 @@
+USE BKEL;
+
+CREATE TABLE IF NOT EXISTS PUBLISHER (
+    PublisherId INTEGER NOT NULL AUTO_INCREMENT,
+    PublisherName VARCHAR(255) NOT NULL,
+    PRIMARY KEY (PublisherId)
+);
+
+LOAD DATA INFILE '/mnt/DAE242A5E242862B/Code/db/Excel/publisher.csv' 
+INTO TABLE PUBLISHER
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (PublisherId, PublisherName);
