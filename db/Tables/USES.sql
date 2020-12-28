@@ -1,0 +1,24 @@
+USE BKEL;
+
+CREATE TABLE IF NOT EXISTS USES (
+    Id INTEGER NOT NULL AUTO_INCREMENT,
+    CourseId CHAR(6) NOT NULL,
+    TextbookId DECIMAL(13,0) NOT NULL,
+    UNIQUE (CourseId, TextbookId),
+    PRIMARY KEY (Id),
+    FOREIGN KEY (CourseId) 
+        REFERENCES COURSE(CourseId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    FOREIGN KEY (TextbookId) 
+        REFERENCES TEXTBOOK(Isbn)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+LOAD DATA INFILE '/mnt/DAE242A5E242862B/Code/db/Excel/uses.csv' 
+INTO TABLE USES
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (CourseId, TextbookId);

@@ -18,7 +18,7 @@
                     <tr>
                         <td class="text-center">{{c.Week}}</td>
                         <td class="text-center"> {{c.ClassId}} </td>
-                        <td class="text-center"> <a href="{% url 'lecturer:class'%}/{{c}}">Details</a> </td>
+                        <td class="text-center"> <a href="{% url 'lecturer:class'%}/{{c.ClassId}}">Details</a> </td>
                     </tr>
                 {% endfor %}
             </tbody>

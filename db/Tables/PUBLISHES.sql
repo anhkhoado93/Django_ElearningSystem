@@ -1,0 +1,25 @@
+USE BKEL;
+
+CREATE TABLE IF NOT EXISTS PUBLISHES (
+    Id INTEGER NOT NULL AUTO_INCREMENT,
+    TextbookId DECIMAL(13,0) NOT NULL,
+    PublisherId INTEGER NOT NULL,
+    PublishedDate DATETIME,
+    UNIQUE (TextbookId),
+    PRIMARY KEY (Id),
+    FOREIGN KEY (TextbookId) 
+        REFERENCES TEXTBOOK(Isbn)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    FOREIGN KEY (PublisherId) 
+        REFERENCES PUBLISHER(PublisherId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+LOAD DATA INFILE '/mnt/DAE242A5E242862B/Code/db/Excel/publishes.csv' 
+INTO TABLE PUBLISHES
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (TextbookId, PublisherId, PublishedDate);

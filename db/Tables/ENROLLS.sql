@@ -1,0 +1,25 @@
+USE BKEL;
+
+CREATE TABLE IF NOT EXISTS ENROLLS (
+    Id INTEGER NOT NULL AUTO_INCREMENT,
+    Semester INTEGER NOT NULL,
+    StudentId DECIMAL(7,0) NOT NULL,
+    CourseId CHAR(6) NOT NULL,
+    UNIQUE (Semester, StudentId, CourseId),
+    PRIMARY KEY (Id),
+    FOREIGN KEY (StudentId) 
+        REFERENCES STUDENT(StudentId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    FOREIGN KEY (CourseId) 
+        REFERENCES COURSE(CourseId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+LOAD DATA INFILE '/mnt/DAE242A5E242862B/Code/db/Excel/enrolls.csv' 
+INTO TABLE ENROLLS
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (Semester, StudentId, CourseId);
