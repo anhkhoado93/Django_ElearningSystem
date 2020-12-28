@@ -1,0 +1,25 @@
+USE BKEL;
+
+CREATE TABLE IF NOT EXISTS TEACHES (
+    Id INTEGER NOT NULL AUTO_INCREMENT,
+    Week INTEGER NOT NULL,
+    ClassId VARCHAR(255) NOT NULL,
+    LecturerId DECIMAL(7,0) NOT NULL,
+    UNIQUE (Week, ClassId, LecturerId),
+    PRIMARY KEY (Id),
+    FOREIGN KEY (LecturerId) 
+        REFERENCES LECTURER(LecturerId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    FOREIGN KEY (ClassId) 
+        REFERENCES CLASS(ClassId)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+LOAD DATA INFILE '/mnt/DAE242A5E242862B/Code/db/Excel/teaches.csv' 
+INTO TABLE TEACHES
+    FIELDS TERMINATED BY ','
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 LINES
+    (Week, ClassId, LecturerId);
